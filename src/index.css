@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"); /* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  font-family: "Titillium Web", sans-serif;
+  box-sizing: border-box;
+  color: white;
+  text-decoration: none;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  background-color: black;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* Styles Start Here */
+
+main {
+  background-image: url("./assets/mainbg.png");
+  background-position: center;
+}
+
+main nav {
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  /* justify-content: space-between; */
+}
+
+main nav .logo-container {
+  width: 45px;
+  height: auto;
+  overflow: hidden;
+}
+
+main .center-nav {
+  max-width: 900px;
+  border-radius: 2rem;
+  padding: 1rem 5rem;
+  background-color: #292622;
+  display: flex;
+  gap: 2rem;
+  font-size: 0.9rem;
+  font-weight: 1500;
+  margin: 0 auto;
+  text-transform: uppercase;
+}
+
+main .center-nav a:hover {
+  color: #f3cc8e;
+}
+
+main .nav-button {
+  background-color: inherit;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 2rem;
+  border: 1px solid #f3cc8e;
+}
+
+main .nav-button:hover {
+  color: black;
+
+  background-color: #f3cc8e;
+  cursor: pointer;
+}
+
+main section {
+  margin-top: 3.5rem;
+  display: flex;
+  padding: 1rem;
+  justify-content: space-around;
+  align-items: center;
+}
+
+main section .title-container {
+  align-self: flex-start;
+}
+
+main section .title-container h1 {
+  font-size: 7rem;
+  color: #f3cc8e;
+}
+
+main section .title-container h2 {
+  font-size: 1.5rem;
+}
+
+main section .two-image-container {
+  align-self: center;
+  display: flex;
+  min-height: 500px;
+  gap: 1.5rem;
+}
+
+main section .two-image-container div:last-child {
+  align-self: flex-end;
+}
+
+main section .two-image-container div:first-child {
+  align-self: flex-start;
+}
+
+main section .image-container {
+  max-width: 300px;
+  height: auto;
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
