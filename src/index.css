@@ -82,8 +82,11 @@ h6 {
 /* Styles Start Here */
 
 main {
-  background-image: url("./assets/mainbg.png");
+  background-image: url("./assets/mainbg1.png");
   background-position: center;
+  background-repeat: repeat-x;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 main nav {

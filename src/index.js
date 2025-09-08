@@ -1,3 +1,10 @@
 import "./index.css";
 
-console.log("test");
+const mainBg = document.querySelector("main");
+
+window.addEventListener("scroll", () => {
+  let offset = window.pageYOffset;
+  const velocity = 0.5;
+
+  mainBg.style.backgroundPositionX = offset * velocity + "px";
+});
