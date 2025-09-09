@@ -86,7 +86,7 @@ main {
   background-position: center;
   background-repeat: repeat-x;
   background-size: cover;
-  background-attachment: fixed;
+  min-height: 850px;
 }
 
 main nav {
@@ -117,6 +117,7 @@ main .center-nav {
 
 main .center-nav a:hover {
   color: #f3cc8e;
+  cursor: pointer;
 }
 
 main .nav-button {
@@ -175,4 +176,88 @@ main section .image-container {
   height: auto;
   overflow: hidden;
   border-radius: 1.5rem;
+}
+
+.subtext-container {
+  background-image: url("./assets/subtextbg.png");
+  background-position: right;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.subtext {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 5rem;
+}
+
+.subtext p {
+  font-size: 3rem;
+  color: #000;
+}
+
+#services-btn {
+  background: #eab766;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  margin-top: 3rem;
+  border: 2px solid black;
+  border-radius: 1rem;
+  color: #000;
+}
+
+#services-btn:hover {
+  cursor: pointer;
+}
+
+.subtext-item-two {
+  background-color: grey;
+}
+
+.choose-container {
+  padding: 6rem 15rem;
+}
+
+#choose-label {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.marketing-item {
+  display: flex;
+  gap: 3rem;
+  text-align: center;
+  will-change: background-position;
+  background: linear-gradient(
+    90deg,
+    rgba(243, 204, 142, 1) 50%,
+    rgba(0, 0, 0, 0) 50%
+  );
+  background-size: 200% 100%;
+  background-position: right;
+  transition: background-position 500ms ease;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.marketing-item:hover {
+  background-position: left;
+  cursor: pointer;
+}
+
+.marketing-item .title p {
+  font-size: 2.5rem;
+  text-align: end;
+}
+
+.marketing-item,
+.desc {
+  padding: 1rem;
+  text-align: start;
+  font-size: 1.5rem;
+}
+
+.title > p:hover,
+.desc:hover {
+  color: #000;
 }
