@@ -6,6 +6,7 @@
   box-sizing: border-box;
   color: white;
   text-decoration: none;
+  list-style-type: none;
 }
 
 /* 2. Remove default margin */
@@ -148,12 +149,12 @@ main section .title-container {
 }
 
 main section .title-container h1 {
-  font-size: 7rem;
+  font-size: 8.5rem;
   color: #f3cc8e;
 }
 
 main section .title-container h2 {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
 }
 
 main section .two-image-container {
@@ -224,8 +225,8 @@ main section .image-container {
 }
 
 .marketing-item {
-  display: flex;
-  gap: 3rem;
+  display: grid;
+  gap: 1rem;
   text-align: center;
   will-change: background-position;
   background: linear-gradient(
@@ -235,14 +236,21 @@ main section .image-container {
   );
   background-size: 200% 100%;
   background-position: right;
-  transition: background-position 500ms ease;
+  transition: background-position 100ms ease;
   border-radius: 0.5rem;
   margin-bottom: 2rem;
+  grid-template-columns: 1fr 4fr;
 }
 
 .marketing-item:hover {
   background-position: left;
   cursor: pointer;
+}
+
+.marketing-item .title {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
 
 .marketing-item .title p {
@@ -257,7 +265,87 @@ main section .image-container {
   font-size: 1.5rem;
 }
 
-.title > p:hover,
-.desc:hover {
-  color: #000;
+.marketing-item-hovered {
+  color: black;
+}
+
+.wrapper {
+  /* background-color: rgba(255, 255, 255, 0.55); */
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  border-radius: 1rem;
+}
+
+.partners-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem 4rem 4rem;
+}
+
+.partner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.partner-label {
+  padding: 3rem;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.partner .image-container {
+  width: 250px;
+  height: auto;
+  border-radius: 3rem;
+  overflow: hidden;
+}
+
+.partner .name {
+  font-size: 1.3rem;
+}
+
+.footer-content-container {
+  padding: 2rem 3rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.footer-title p {
+  text-align: center;
+  padding: 0rem 6rem;
+  color: gray;
+}
+
+.footer-title p:first-child {
+  color: #f3cc8e;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.social-media-plugs p,
+.footer-contacts > p {
+  font-size: 1;
+  color: gray;
+}
+
+.footer-contacts .numbers {
+  color: white;
+  padding-left: 1rem;
+}
+
+.logos-wrapper {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  overflow: hidden;
+}
+
+#copyright {
+  text-align: center;
+  padding-bottom: 1rem;
 }

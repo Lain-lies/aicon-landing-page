@@ -1,5 +1,4 @@
 import "./index.css";
-
 const mainBg = document.querySelector("main");
 
 window.addEventListener("scroll", () => {
@@ -9,22 +8,26 @@ window.addEventListener("scroll", () => {
   mainBg.style.backgroundPositionX = offset * velocity + "px";
 });
 
-function changeTitleColor() {
-  title;
-  e.target.style.color = "#000";
+const marketingItemNodes = [...document.querySelectorAll(".marketing-item")];
+
+function handleHover() {
+  const title = [...this.children[0].children];
+  const desc = this.children[1];
+  title.forEach((titleFragment) =>
+    titleFragment.classList.toggle("marketing-item-hovered"),
+  );
+  desc.classList.toggle("marketing-item-hovered");
 }
 
-function revertColor(e) {
-  e.target.style.color = "#fff";
+function handleDefault() {
+  const title = [...this.children[0].children];
+  const desc = this.children[1];
+  title.forEach((titleFragment) =>
+    titleFragment.classList.toggle("marketing-item-hovered"),
+  );
+  desc.classList.toggle("marketing-item-hovered");
 }
-
-const marketingItem = document.querySelector(".marketing-item");
-const titleFragment = [...document.querySelectorAll(".title > p")];
-
-marketingItem.addEventListener("mouseover", () => {
-  titleFragment.forEach((title) => (title.style.color = "#000"));
-});
-
-marketingItem.addEventListener("mouseleave", () => {
-  titleFragment.forEach((title) => (title.style.color = "#fff"));
+marketingItemNodes.forEach((item) => {
+  item.addEventListener("mouseenter", handleHover);
+  item.addEventListener("mouseleave", handleDefault);
 });
