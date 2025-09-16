@@ -81,6 +81,9 @@ h6 {
 }
 
 /* Styles Start Here */
+#contact-mv {
+  display: none;
+}
 
 main {
   background-image: url("./assets/mainbg1.png");
@@ -121,7 +124,7 @@ main .center-nav a:hover {
   cursor: pointer;
 }
 
-main .nav-button {
+.nav-button {
   background-color: inherit;
   font-size: 1.2rem;
   border-radius: 0.5rem;
@@ -181,7 +184,7 @@ main section .image-container {
 
 .subtext-container {
   background-image: url("./assets/subtextbg.png");
-  background-position: right;
+  background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
@@ -348,4 +351,201 @@ main section .image-container {
 #copyright {
   text-align: center;
   padding-bottom: 1rem;
+}
+
+#footer-quote-short {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  main {
+    background-image: url("./assets/mobilemainbg.png");
+    min-height: 650px;
+  }
+
+  #contact-mv,
+  main section {
+    display: block;
+  }
+
+  main nav {
+    display: block;
+    padding: 2rem 1rem 1rem 1rem;
+  }
+
+  main nav .logo-container,
+  main section .two-image-container,
+  main button {
+    display: none;
+  }
+
+  main .center-nav {
+    margin: 0 2rem;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  main .center-nav a {
+    font-size: 0.8rem;
+    width: fit-content;
+  }
+
+  main section {
+    margin-left: 1rem;
+    margin-top: 1rem;
+  }
+
+  main section .title-container h1 {
+    font-size: 6rem;
+  }
+
+  main section .title-container h2 {
+    font-size: 2rem;
+  }
+
+  .nav-button {
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    padding: 0.3rem 1rem;
+  }
+
+  .subtext-container {
+    background: none;
+  }
+
+  .subtext {
+    padding: 2rem;
+  }
+
+  .subtext p {
+    font-size: 1.4rem;
+  }
+
+  #services-btn {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.7rem;
+    margin-top: 1.5rem;
+    border-radius: 0.3rem;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+  }
+  .choose-container {
+    background: url("./assets/mobilesubtextbg.png");
+    background-size: cover;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    padding: 2rem 1rem;
+  }
+
+  #choose-label {
+    font-size: 2rem;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
+  .marketing-item {
+    background: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+    text-align: center;
+    will-change: auto;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.5rem;
+  }
+
+  .marketing-item .title {
+    justify-content: center;
+    flex-direction: row;
+    gap: 0.5rem;
+    transition: none;
+  }
+
+  .marketing-item .title p {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #f3cc8e;
+  }
+
+  .marketing-item,
+  .desc {
+    text-align: center;
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  .wrapper {
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  .wrapper p {
+    font-size: 2rem;
+    padding: 1rem;
+  }
+
+  .wrapper .partners-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .partners-container .partner {
+    justify-content: flex-start;
+  }
+
+  .partner .image-container {
+    max-width: 110px;
+    min-width: 70px;
+    border-radius: 4rem;
+  }
+
+  .partner .name {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .footer-content-container {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .footer-title p {
+    text-align: center;
+    padding: 0rem 1rem;
+    color: gray;
+    font-size: 0.75rem;
+  }
+
+  .footer-title p:first-child {
+    font-size: 1.5rem;
+  }
+  .footer-title p:nth-child(2) {
+    display: none;
+  }
+
+  #footer-quote-short {
+    display: block;
+  }
+
+  .social-media-plugs p,
+  .footer-contacts p {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .logos-wrapper {
+    padding: 0.5rem;
+    margin-top: 0;
+  }
+
+  .footer-contacts .numbers p {
+    margin-top: 0.2rem;
+  }
+
+  #copyright {
+    font-size: 0.75 rem;
+  }
 }
