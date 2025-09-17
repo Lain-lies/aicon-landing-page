@@ -8,25 +8,27 @@ window.addEventListener("scroll", () => {
   mainBg.style.backgroundPositionX = offset * velocity + "px";
 });
 
-const marketingItemNodes = [...document.querySelectorAll(".marketing-item")];
+const marketingItemNodes = [...document.querySelectorAll(".feature")];
 
 function handleHover() {
   const title = [...this.children[0].children];
   const desc = this.children[1];
   title.forEach((titleFragment) =>
-    titleFragment.classList.toggle("marketing-item-hovered"),
+    titleFragment.classList.toggle("feature-hovered"),
   );
-  desc.classList.toggle("marketing-item-hovered");
+  desc.classList.toggle("feature-hovered");
 }
 
 function handleDefault() {
   const title = [...this.children[0].children];
   const desc = this.children[1];
   title.forEach((titleFragment) =>
-    titleFragment.classList.toggle("marketing-item-hovered"),
+    titleFragment.classList.toggle("feature-hovered"),
   );
-  desc.classList.toggle("marketing-item-hovered");
+  desc.classList.toggle("feature-hovered");
 }
+
+
 marketingItemNodes.forEach((item) => {
   item.addEventListener("mouseenter", handleHover);
   item.addEventListener("mouseleave", handleDefault);

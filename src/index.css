@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"); /* 1. Use a more-intuitive box-sizing model */
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
 *,
 *::before,
 *::after {
@@ -9,12 +9,10 @@
   list-style-type: none;
 }
 
-/* 2. Remove default margin */
 * {
   margin: 0;
 }
 
-/* 3. Enable keyword animations */
 @media (prefers-reduced-motion: no-preference) {
   html {
     interpolate-size: allow-keywords;
@@ -22,14 +20,11 @@
 }
 
 body {
-  /* 4. Add accessible line-height */
   line-height: 1.5;
-  /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
   background-color: black;
 }
 
-/* 6. Improve media defaults */
 img,
 picture,
 video,
@@ -39,7 +34,6 @@ svg {
   max-width: 100%;
 }
 
-/* 7. Inherit fonts for form controls */
 input,
 button,
 textarea,
@@ -47,7 +41,6 @@ select {
   font: inherit;
 }
 
-/* 8. Avoid text overflows */
 p,
 h1,
 h2,
@@ -58,7 +51,6 @@ h6 {
   overflow-wrap: break-word;
 }
 
-/* 9. Improve line wrapping */
 p {
   text-wrap: pretty;
 }
@@ -72,41 +64,35 @@ h6 {
   text-wrap: balance;
 }
 
-/*
-  10. Create a root stacking context
-*/
 #root,
 #__next {
   isolation: isolate;
 }
 
-/* Styles Start Here */
-#contact-mv {
-  display: none;
-}
+/* Main section Company Name with Pictures */
 
-main {
+.hero-section {
   background-image: url("./assets/mainbg1.png");
   background-position: center;
   background-repeat: repeat-x;
   background-size: cover;
-  min-height: 850px;
+  padding-bottom: 7rem;
 }
 
-main nav {
+.hero-section-nav {
   display: flex;
   align-items: center;
   padding: 2rem;
   /* justify-content: space-between; */
 }
 
-main nav .logo-container {
+.hero-section-nav .logo-container {
   width: 45px;
   height: auto;
   overflow: hidden;
 }
 
-main .center-nav {
+.hero-section-nav .center-bar {
   max-width: 900px;
   border-radius: 2rem;
   padding: 1rem 5rem;
@@ -119,27 +105,27 @@ main .center-nav {
   text-transform: uppercase;
 }
 
-main .center-nav a:hover {
+.hero-section-nav .center-bar a:hover {
   color: #f3cc8e;
   cursor: pointer;
 }
 
-.nav-button {
-  background-color: inherit;
+.hero-section-nav .nav-contact-button,
+.nav-contact-button {
+  background-color: #f3cc8e;
   font-size: 1.2rem;
   border-radius: 0.5rem;
   padding: 0.5rem 2rem;
   border: 1px solid #f3cc8e;
 }
 
-main .nav-button:hover {
+.nav-contact-button:hover {
   color: black;
-
   background-color: #f3cc8e;
   cursor: pointer;
 }
 
-main section {
+.hero-section-content {
   margin-top: 3.5rem;
   display: flex;
   padding: 1rem;
@@ -147,59 +133,65 @@ main section {
   align-items: center;
 }
 
-main section .title-container {
+.hero-section-content .title-container {
   align-self: flex-start;
 }
 
-main section .title-container h1 {
+.hero-section-content .title-container h1 {
   font-size: 8.5rem;
   color: #f3cc8e;
 }
 
-main section .title-container h2 {
+.hero-section-content .title-container h2 {
   font-size: 2.5rem;
 }
 
-main section .two-image-container {
+.hero-section-content .mobile-contact-btn {
+  display: none;
+}
+
+.hero-section-content .two-image-container {
   align-self: center;
   display: flex;
   min-height: 500px;
   gap: 1.5rem;
 }
 
-main section .two-image-container div:last-child {
+.hero-section-content .two-image-container div:last-child {
   align-self: flex-end;
 }
 
-main section .two-image-container div:first-child {
+.hero-section-content .two-image-container div:first-child {
   align-self: flex-start;
 }
 
-main section .image-container {
+.hero-section-content .two-image-container .image-container {
   max-width: 300px;
   height: auto;
   overflow: hidden;
   border-radius: 1.5rem;
 }
 
-.subtext-container {
+.content-section {
   background-image: url("./assets/subtextbg.png");
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
 
-.subtext {
+/* Slogan Section  */
+
+.content-section-slogan {
   background-color: rgba(255, 255, 255, 0.85);
   padding: 5rem;
 }
 
-.subtext p {
+.content-section-slogan p {
   font-size: 3rem;
   color: #000;
 }
 
-#services-btn {
+.content-section-slogan .slogan-services-btn {
   background: #eab766;
   padding: 1rem 2rem;
   font-size: 1.5rem;
@@ -209,25 +201,23 @@ main section .image-container {
   color: #000;
 }
 
-#services-btn:hover {
+.content-section-slogan .slogan-services-btn {
   cursor: pointer;
 }
 
-.subtext-item-two {
-  background-color: grey;
-}
+/* Why Choose Us Section */
 
-.choose-container {
+.content-section-features {
   padding: 6rem 15rem;
 }
 
-#choose-label {
+.content-section-features .label {
   font-size: 3rem;
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.marketing-item {
+.content-section-features .feature {
   display: grid;
   gap: 1rem;
   text-align: center;
@@ -245,41 +235,47 @@ main section .image-container {
   grid-template-columns: 1fr 4fr;
 }
 
-.marketing-item:hover {
+.feature:hover {
   background-position: left;
   cursor: pointer;
 }
 
-.marketing-item .title {
+.feature .title {
   display: flex;
   flex-direction: column;
   justify-content: end;
 }
 
-.marketing-item .title p {
+.feature .title p {
   font-size: 2.5rem;
   text-align: end;
 }
 
-.marketing-item,
-.desc {
+.feature .desc {
   padding: 1rem;
   text-align: start;
   font-size: 1.5rem;
 }
 
-.marketing-item-hovered {
+.feature-hovered {
   color: black;
 }
 
-.wrapper {
-  /* background-color: rgba(255, 255, 255, 0.55); */
+/* Partners Section */
+
+.content-section-partners {
   border-top: 1px solid white;
   border-bottom: 1px solid white;
   border-radius: 1rem;
 }
 
-.partners-container {
+.content-section-partners .label {
+  padding: 3rem;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.content-section-partners .partners-container {
   display: flex;
   justify-content: space-around;
   padding: 1rem 4rem 4rem;
@@ -293,12 +289,6 @@ main section .image-container {
   gap: 1rem;
 }
 
-.partner-label {
-  padding: 3rem;
-  font-size: 3rem;
-  text-align: center;
-}
-
 .partner .image-container {
   width: 250px;
   height: auto;
@@ -310,37 +300,37 @@ main section .image-container {
   font-size: 1.3rem;
 }
 
-.footer-content-container {
+/* Footer Section */
+
+.footer-content {
   padding: 2rem 3rem;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   gap: 2rem;
 }
 
-.footer-title p {
+.footer-title-quote > * {
   text-align: center;
   padding: 0rem 6rem;
   color: gray;
 }
 
-.footer-title p:first-child {
+.footer-title-quote .title {
   color: #f3cc8e;
   font-size: 2rem;
-  text-align: center;
 }
 
-.social-media-plugs p,
+.footer-title-quote .short-quote {
+  display: none;
+}
+
+.footer-socmed p,
 .footer-contacts > p {
   font-size: 1;
   color: gray;
 }
 
-.footer-contacts .numbers {
-  color: white;
-  padding-left: 1rem;
-}
-
-.logos-wrapper {
+.footer-socmed .logos-wrapper {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
@@ -348,87 +338,90 @@ main section .image-container {
   overflow: hidden;
 }
 
-#copyright {
+.footer-contacts .numbers {
+  color: white;
+  padding-left: 1rem;
+}
+
+footer.copyright {
   text-align: center;
   padding-bottom: 1rem;
 }
 
-#footer-quote-short {
-  display: none;
-}
-
 @media (max-width: 768px) {
-  main {
+  .hero-section {
     background-image: url("./assets/mobilemainbg.png");
-    min-height: 650px;
+    /* min-height: 650px; */
   }
 
-  #contact-mv,
-  main section {
-    display: block;
-  }
-
-  main nav {
-    display: block;
-    padding: 2rem 1rem 1rem 1rem;
-  }
-
-  main nav .logo-container,
-  main section .two-image-container,
-  main button {
+  .hero-section-nav .logo-container,
+  .hero-section-nav .nav-contact-button,
+  .hero-section-content .two-image-container {
     display: none;
   }
 
-  main .center-nav {
+  .hero-section-nav,
+  .hero-section-content,
+  .hero-section-content .mobile-contact-btn {
+    display: block;
+  }
+
+  .hero-section-nav {
+    padding: 2rem 1rem 1rem 1rem;
+  }
+
+  .hero-section-nav .center-bar {
     margin: 0 2rem;
     justify-content: center;
     gap: 1rem;
   }
 
-  main .center-nav a {
+  .hero-section-nav .center-bar a {
     font-size: 0.8rem;
     width: fit-content;
   }
 
-  main section {
+  .hero-section-content {
     margin-left: 1rem;
     margin-top: 1rem;
   }
 
-  main section .title-container h1 {
+  .hero-section-content .title-container h1 {
     font-size: 6rem;
   }
 
-  main section .title-container h2 {
+  .hero-section-content .title-container h2 {
     font-size: 2rem;
   }
 
-  .nav-button {
+  .hero-section-content .mobile-contact-btn {
+    color: #000;
     font-size: 0.9rem;
     margin-top: 1.5rem;
     padding: 0.3rem 1rem;
   }
 
-  .subtext-container {
+  .content-section {
     background: none;
   }
 
-  .subtext {
+  .content-section-slogan {
     padding: 2rem;
   }
 
-  .subtext p {
+  .content-section-slogan p {
     font-size: 1.4rem;
   }
 
-  #services-btn {
+  .content-section-slogan .slogan-services-btn {
     padding: 0.5rem 0.5rem;
     font-size: 0.7rem;
     margin-top: 1.5rem;
     border-radius: 0.3rem;
     border: 1px solid rgba(0, 0, 0, 0.3);
   }
-  .choose-container {
+
+  .content-section-features {
     background: url("./assets/mobilesubtextbg.png");
     background-size: cover;
     background-attachment: scroll;
@@ -436,14 +429,14 @@ main section .image-container {
     padding: 2rem 1rem;
   }
 
-  #choose-label {
+  .content-section-features .label {
     font-size: 2rem;
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
   }
 
-  .marketing-item {
+  .content-section-features .feature {
     background: none;
     display: flex;
     flex-direction: column;
@@ -456,43 +449,44 @@ main section .image-container {
     padding: 0.5rem;
   }
 
-  .marketing-item .title {
+  .feature .title {
     justify-content: center;
     flex-direction: row;
     gap: 0.5rem;
     transition: none;
   }
 
-  .marketing-item .title p {
+  .feature .title p {
     font-size: 1.5rem;
     text-align: center;
     color: #f3cc8e;
   }
 
-  .marketing-item,
-  .desc {
+  .feature .desc {
     text-align: center;
     font-size: 1rem;
     padding: 0.5rem;
   }
 
-  .wrapper {
+  .content-section-partners {
     border-top: 2px solid rgba(255, 255, 255, 0.3);
     border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0;
   }
-  .wrapper p {
+
+  .content-section-partners p {
     font-size: 2rem;
     padding: 1rem;
   }
 
-  .wrapper .partners-container {
+  .content-section-partners .partners-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     padding: 1rem;
   }
 
-  .partners-container .partner {
+  .content-section-partners .partner {
     justify-content: flex-start;
   }
 
@@ -507,45 +501,57 @@ main section .image-container {
     font-size: 1.1rem;
   }
 
-  .footer-content-container {
-    padding: 1rem;
+  footer {
+    margin-top: 1rem;
+  }
+  .footer-content {
+    padding: 0rem;
     gap: 0.5rem;
   }
 
-  .footer-title p {
-    text-align: center;
+  .footer-title-quote .title {
+    font-size: 1rem;
     padding: 0rem 1rem;
-    color: gray;
-    font-size: 0.75rem;
   }
 
-  .footer-title p:first-child {
-    font-size: 1.5rem;
-  }
-  .footer-title p:nth-child(2) {
+  .footer-title-quote .long-quote {
     display: none;
   }
 
-  #footer-quote-short {
+  .footer-title-quote .short-quote {
     display: block;
+    padding: 0.3rem;
+    font-size: 0.5rem;
   }
 
-  .social-media-plugs p,
-  .footer-contacts p {
+  .footer-socmed,
+  .footer-contacts {
+    padding-top: 0.3rem;
+  }
+
+  .footer-socmed .label,
+  .footer-contacts .label {
+    font-size: 0.5rem;
+  }
+
+  .footer-socmed .logos-wrapper {
     margin-top: 0.5rem;
-    font-size: 0.75rem;
+    padding-left: 1rem;
+    gap: 0.5rem;
   }
 
-  .logos-wrapper {
+  .logos-wrapper a svg {
+    height: 0.75em;
+    width: 0.75em;
+  }
+
+  .footer-contacts .numbers > * {
+    font-size: 0.6rem;
+  }
+
+  footer .copyright {
+    font-size: 0.5rem;
     padding: 0.5rem;
-    margin-top: 0;
-  }
-
-  .footer-contacts .numbers p {
-    margin-top: 0.2rem;
-  }
-
-  #copyright {
-    font-size: 0.75 rem;
+    text-align: center;
   }
 }
