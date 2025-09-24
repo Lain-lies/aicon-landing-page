@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
+*,
+*::before,
+*::after {
+  font-family: "Titillium Web", sans-serif;
+  box-sizing: border-box;
+  color: #f3cc8e;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+*,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background-color: black;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+.hero-section-nav {
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  /* justify-content: space-between; */
+}
+
+.hero-section-nav .logo-container {
+  width: 45px;
+  height: auto;
+  overflow: hidden;
+}
+
+.hero-section-nav .center-bar {
+  max-width: 900px;
+  border-radius: 2rem;
+  padding: 1rem 5rem;
+  background-color: #292622;
+  display: flex;
+  gap: 2rem;
+  font-size: 0.9rem;
+  font-weight: 1500;
+  margin: 0 auto;
+  text-transform: uppercase;
+}
+
+.hero-section-nav .center-bar a:hover {
+  color: #f3cc8e;
+  cursor: pointer;
+}
+
+.hero-section-nav .nav-contact-button,
+.nav-contact-button {
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 2rem;
+  background-color: #000;
+  border: 1px solid #f3cc8e;
+}
+
+.nav-contact-button:hover {
+  color: black;
+  background-color: #f3cc8e;
+  cursor: pointer;
+}
+
+/* Banner */
+
+.main-banner {
+  background: #f3cc8e;
+  margin-top: 5rem;
+  width: 50vw;
+  padding-left: 25%;
+}
+
+.main-banner h1 {
+  font-size: clamp(1rem, 1.4rem + 3vw, 5rem);
+  color: black;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+}
+
+.mis-vis-wrapper {
+
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 2fr;
+}
+
+.mis-vis h2::before {
+  content: "Our";
+  display: block;
+  color: #f3cc8e;
+  height: min-content;
+  line-height: 0;
+  font-size: clamp(1rem, 2rem, 4rem);
+}
