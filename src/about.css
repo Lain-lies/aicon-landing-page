@@ -118,16 +118,16 @@ h6 {
 }
 
 /* Banner */
-main{
-  margin-bottom: 15rem;
+main {
+  margin-bottom: 10rem;
 }
 
 .main-banner {
   background: #f3cc8e;
   width: 50vw;
   padding-left: 25%;
-  margin-top: 10rem;
-  margin-bottom: 15rem;
+  margin-top: 5rem;
+  margin-bottom: 10rem;
 }
 
 .main-banner h1 {
@@ -137,31 +137,33 @@ main{
   white-space: nowrap;
 }
 
-.mis{
+.mis {
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 2fr;
   align-items: center;
-  margin-bottom: 20rem;
+  margin-bottom: 10rem;
 }
 
-.mis-content{
+.mis-content {
   padding: 1rem;
   justify-self: center;
   text-align: end;
   font-size: clamp(0.9rem, 1rem + 0.5vw, 1.5rem);
 }
 
-.mis-content .list{
+.mis-content .list {
   margin-bottom: 1rem;
 }
 
-.mis-label, .vis-label{
+.mis-label,
+.vis-label {
   font-size: clamp(1.2rem, 2rem + 2vw, 4rem);
   padding: 1rem;
 }
 
-.mis-label h2::before, .vis-label h2::before {
+.mis-label h2::before,
+.vis-label h2::before {
   content: "our  ";
   display: block;
   color: #f3cc8e;
@@ -170,8 +172,7 @@ main{
   font-size: clamp(1rem, 2rem, 4rem);
 }
 
-
-.vis{
+.vis {
   margin-top: 5rem;
   margin-bottom: 5rem;
   display: grid;
@@ -181,20 +182,34 @@ main{
   align-items: center;
 }
 
-.vis-content{
+.vis-content {
   text-align: start;
-  justify-self:baseline;
+  justify-self: baseline;
   font-size: clamp(1rem, 1rem + 1.2vw, 1.8rem);
   padding: 0rem;
-
 }
 
-.vis-label h2::before{
+.vis-label h2::before {
   display: inline;
 }
 
-.officers{
-  margin-bottom: 5rem;
+.officers-label {
+  text-align: center;
+  font-size: 4rem;
+  margin-bottom: 8rem;
+}
+
+.officers-label::before,
+.officers-label::after {
+  content: "-";
+  width: 200px;
+  margin: 1rem;
+
+  text-align: center;
+}
+
+.officers {
+  margin-bottom: 2rem;
 }
 
 .officers-ceo {
@@ -202,7 +217,9 @@ main{
   grid-template-columns: 2fr 1fr;
   gap: 1rem;
   transform: translateX(-100%);
-  transition: transform 1s ease, opacity 1s ease;
+  transition:
+    transform 1s ease,
+    opacity 1s ease;
 }
 
 .ceo-show {
@@ -210,14 +227,18 @@ main{
 }
 
 .officers-ceo .profile,
-.officers-cfo .profile{
-  background: #F3CC8E;
-  background: linear-gradient(0deg, rgba(243, 204, 142, 1) 50%, rgba(0, 0, 0, 1) 50%);
+.officers-cfo .profile {
+  background: #f3cc8e;
+  background: linear-gradient(
+    0deg,
+    rgba(243, 204, 142, 1) 50%,
+    rgba(0, 0, 0, 1) 50%
+  );
   display: grid;
   grid-template-columns: 2fr 1.5fr;
 }
 
-.profile .name{
+.profile .name {
   color: #000;
   justify-self: center;
   align-self: flex-end;
@@ -226,14 +247,15 @@ main{
   font-weight: bold;
 }
 
-.profile .image-container{
-  margin: 1rem;    
+.profile .image-container {
+  margin: 1rem;
   margin-bottom: 0;
   justify-self: end;
   min-width: 220px;
 }
 
-.officers-ceo .label, .officers-cfo .label{
+.officers-ceo .label,
+.officers-cfo .label {
   font-size: clamp(2rem, 7rem + 1vw, 12rem);
   justify-self: center;
   align-self: center;
@@ -241,7 +263,7 @@ main{
 }
 
 .officers-ceo .more,
-.cfo-show .more{
+.cfo-show .more {
   padding: 4rem;
   font-size: 1.5rem;
   line-height: 2;
@@ -253,38 +275,91 @@ main{
   grid-template-columns: 1fr 2fr;
   gap: 1rem;
   transform: translateX(100%);
-  transition: transform 1s ease, opacity 1s ease;
+  transition:
+    transform 1s ease,
+    opacity 1s ease;
 }
 
-.cfo-show{
+.cfo-show {
   transform: translateX(0%);
 }
 
-.cfo-show .more{
+.cfo-show .more {
   grid-column-start: -2;
   grid-column-end: -1;
 }
 
+.ending {
+  padding: 8rem 10rem 8rem 10rem;
+  border-top: 1px solid rgb(243, 204, 142, 0.5);
+  border-bottom: 1px solid rgb(243, 204, 142, 0.5);
+  margin-bottom: 3.5rem;
+}
 
+.ending p {
+  font-size: clamp(1rem, 1rem + 1.2vw, 2.5rem);
+  text-align: center;
+}
 
+.footer-content {
+  padding: 2rem 3rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2rem;
+}
 
-@media(max-width: 1200px){
-  .mis-content{
+.footer-title-quote > * {
+  text-align: center;
+  padding: 0rem 6rem;
+  color: gray;
+}
+
+.footer-title-quote .title {
+  color: #f3cc8e;
+  font-size: 2rem;
+}
+
+.footer-title-quote .short-quote {
+  display: none;
+}
+
+.footer-socmed p,
+.footer-contacts > p {
+  font-size: 1;
+  color: gray;
+}
+
+.footer-socmed .logos-wrapper {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  overflow: hidden;
+}
+
+.footer-contacts .numbers {
+  color: white;
+  padding-left: 1rem;
+}
+
+footer .copyright {
+  text-align: center;
+  padding: 2rem 0 2rem 0;
+}
+
+@media (max-width: 1200px) {
+  .mis-content {
     padding-right: 3rem;
   }
-  .mis-label{
+  .mis-label {
     padding-right: 3rem;
     /* align-self:start; */
   }
-  .profile .image-container{
+  .profile .image-container {
     margin: 0;
   }
 
-  .profile .name{
+  .profile .name {
     margin-bottom: 3rem;
   }
-  
 }
-
-
-
