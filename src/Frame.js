@@ -26,13 +26,15 @@ function Polaroid(data) {
 }
 
 function Project(projects) {
-  //PARAM EXPECT ARR
 
   const projectsContainer = document.createElement("ul");
+  projectsContainer.classList.add("list");
 
+  if(projects.length < 5) projectsContainer.classList.add("short-list");
   projects.forEach((project) => {
     const node = document.createElement("li");
     node.textContent = project;
+    node.classList.add("list-item")
     projectsContainer.appendChild(node);
   });
 
@@ -47,6 +49,7 @@ function Panel(data) {
 
   const project = Project(data.projects);
   panel.classList.add("panel");
+  panel.classList.add("hidden");
   panel.appendChild(partner);
   panel.appendChild(project);
 
@@ -58,7 +61,7 @@ function Frame(data, type) {
   const polaroids = data.map((prop) => Polaroid(prop));
   polaroids.forEach((polaroid) => frame.appendChild(polaroid));
   frame.classList.add("frame");
-
+  frame.classList.add("hidden");
   return frame;
 }
 

@@ -23,40 +23,40 @@ function intProjectInit() {
   let activeFrames = 0;
 
   const framesDOM = state.map((frame) => Frame(frame));
-  framesDOM[activeFrames].classList.add("active");
+  framesDOM[activeFrames].classList.remove("hidden");
   framesDOM.forEach((node) => frameContainer.appendChild(node));
 
-  showButton.classList.add("active");
   showButton.addEventListener("click", () => {
     const frame = framesDOM[++activeFrames];
-    frame.classList.toggle("active");
+    frame.classList.remove("hidden");
 
     const nextFrame = activeFrames + 1;
     if (framesDOM[nextFrame] === undefined) {
-      showButton.classList.toggle("active");
+      showButton.classList.toggle("hidden");
     }
   });
+
 }
+
 
 function localProjectInit() {
   const panelContainer = document.querySelector(
-    ".local-projects .panel-container",
+    ".local-projects .panel-container"
   );
 
   const panelDOM = localData.map((data) => Panel(data));
   let activePanels = 0;
-  panelDOM.forEach((panel) => panelContainer.appendChild(panel));
-  panelDOM[activePanels].classList.add("active");
-  const showButton = document.querySelector(".local-projects .show-button");
-  showButton.classList.add("active");
 
+  panelDOM.forEach((panel) => panelContainer.appendChild(panel));
+  panelDOM[activePanels].classList.remove("hidden");
+
+  const showButton = document.querySelector(".local-projects .show-button");
   showButton.addEventListener("click", () => {
     const panel = panelDOM[++activePanels];
-    panel.classList.toggle("active");
-
+    panel.classList.remove("hidden");
     const nextPanel = activePanels + 1;
     if (panelDOM[nextPanel] === undefined) {
-      showButton.classList.toggle("active");
+      showButton.classList.toggle("hidden");
     }
   });
 }

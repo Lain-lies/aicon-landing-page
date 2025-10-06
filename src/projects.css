@@ -24,7 +24,8 @@ ul {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  background-color: black;
+  background-color: #181818;
+
 }
 
 img,
@@ -107,7 +108,7 @@ h6 {
   font-size: 1.2rem;
   border-radius: 0.5rem;
   padding: 0.5rem 2rem;
-  background-color: #000;
+  background-color: #181818;
   border: 1px solid #f3cc8e;
 }
 
@@ -137,17 +138,17 @@ main {
   white-space: nowrap;
 }
 
-.int-projects > h1,
+.int-projects{
+  margin-bottom: 10rem;
+}
+
+.int-projects h1,
 .local-projects h1 {
   text-align: center;
   font-size: 5rem;
   margin-bottom: 5rem;
 }
 
-.frame,
-.show-button {
-  display: none;
-}
 
 .polaroid {
   display: grid;
@@ -178,33 +179,29 @@ main {
 .polaroid p {
   font-size: 2rem;
   opacity: 0.9;
+  text-align: center;
 }
 
 .show-button {
+  display: block;
+  margin: 0 auto;
   width: 70%;
   padding: 1rem 1rem;
   font-size: 3rem;
-  color: #fff;
+  color: hsl(0, 0%, 100%);
   font-family: sans-serif;
   opacity: 0.5;
-  background-color: #000;
-  border: 0;
-  margin: 1rem auto;
+  background-color: #181818;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
-  font-weight: lighter;
+  border: 3px solid rgb(255, 255, 255, 0.3);
+  border-top: none;
 }
 
 .show-button:hover {
   background-color: #fff;
-  opacity: 0.3;
   color: #000;
   cursor: pointer;
-}
-
-.panel {
-  display: none;
-  margin-bottom: 3rem;
 }
 
 .local-projects {
@@ -212,23 +209,94 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0rem 5rem;
+  margin-bottom: 5rem;
 }
 
-.panel > ul {
+.panel-container .panel {
+  margin-bottom: 3rem;
+}
+
+.panel h2{
+  font-size: 2rem;
+}
+
+.panel .list{
   margin-top: 2rem;
-  overflow: scroll;
-  height: 40vh;
-  border: 2px solid rgb(255, 255, 255, 0.5);
-  border-radius: 1rem;
+  padding-right: 2px;
+  height: 60vh;
+  overflow-y: auto;
+  border-radius: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #f3cc8e #181818;
 }
 
-.panel > ul > li {
-  padding: 1rem;
-  font-size: 1.5rem;
-  border: 1px solid rgb(243, 204, 142, 0.6);
+.list .list-item {
+  padding: 2rem 1rem;
+  font-size: 1.7rem;
+  border: 1px solid rgb(0, 0, 0, 0.3);
+  color: black;
+  background-color: rgba(243, 204, 142, 1);
+}
+
+.local-projects .show-button{
+  width: 30%;
+}
+
+.short-list{
+  height: auto !important;
+}
+
+.hidden {
+  display: none;
+}
+
+footer{
+  background-color: #212121;
+}
+
+.footer-content {
+  padding: 2rem 3rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.footer-title-quote > * {
+  text-align: center;
+  padding: 0rem 6rem;
+  color: gray;
+}
+
+.footer-title-quote .title {
+  color: #f3cc8e;
+  font-size: 2rem;
+}
+
+.footer-title-quote .short-quote {
+  display: none;
+}
+
+.footer-socmed p,
+.footer-contacts > p {
+  font-size: 1;
+  color: gray;
+}
+
+.footer-socmed .logos-wrapper {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  overflow: hidden;
+}
+
+.footer-contacts .numbers {
   color: white;
+  padding-left: 1rem;
 }
 
-.active {
-  display: block;
+footer .copyright {
+  text-align: center;
+  padding: 2rem 0 2rem 0;
 }
