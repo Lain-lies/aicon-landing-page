@@ -1,9 +1,11 @@
-import Frame from "./Frame";
-import intData from "./data";
+import { Frame, Panel } from "./Frame";
+import { intData, localData } from "./data";
 
-function appInit() {
-  const frameContainer = document.querySelector(".frame-container");
-  const showButton = document.querySelector(".show-button");
+function intProjectInit() {
+  const frameContainer = document.querySelector(
+    ".int-projects .frame-container",
+  );
+  const showButton = document.querySelector(".int-projects .show-button");
 
   const maxPolaroid = 4;
   const state = [];
@@ -20,17 +22,48 @@ function appInit() {
 
   let activeFrames = 0;
 
-  const framesDOM = state.map((frame) => Frame(frame, "polaroid"));
+  const framesDOM = state.map((frame) => Frame(frame));
   framesDOM[activeFrames].classList.add("active");
   framesDOM.forEach((node) => frameContainer.appendChild(node));
 
   showButton.classList.add("active");
   showButton.addEventListener("click", () => {
     const frame = framesDOM[++activeFrames];
-    if (frame === null || frame === undefined) return;
-    frame.classList.add("active");
+    frame.classList.toggle("active");
+
+    const nextFrame = activeFrames + 1;
+    if (framesDOM[nextFrame] === undefined) {
+      showButton.classList.toggle("active");
+    }
   });
 }
 
-appInit();
+function localProjectInit() {
+  const panelContainer = document.querySelector(
+    ".local-projects .panel-container",
+  );
 
+  const panelDOM = localData.map((data) => Panel(data));
+  let activePanels = 0;
+  panelDOM.forEach((panel) => panelContainer.appendChild(panel));
+  panelDOM[activePanels].classList.add("active");
+  const showButton = document.querySelector(".local-projects .show-button");
+  showButton.classList.add("active");
+
+  showButton.addEventListener("click", () => {
+    const panel = panelDOM[++activePanels];
+    panel.classList.toggle("active");
+
+    const nextPanel = activePanels + 1;
+    if (panelDOM[nextPanel] === undefined) {
+      showButton.classList.toggle("active");
+    }
+  });
+}
+
+function appInit() {
+  intProjectInit();
+  localProjectInit();
+}
+
+appInit();

@@ -25,31 +25,41 @@ function Polaroid(data) {
   return container;
 }
 
-function Strip(data) {
-  const container = document.createElement("div");
-  const name = document.createElement("p");
+function Project(projects) {
+  //PARAM EXPECT ARR
 
-  name.textContent = data.name;
-  container.appendChild(name);
+  const projectsContainer = document.createElement("ul");
 
-  return container;
+  projects.forEach((project) => {
+    const node = document.createElement("li");
+    node.textContent = project;
+    projectsContainer.appendChild(node);
+  });
+
+  return projectsContainer;
 }
 
-export default function Frame(data, type) {
-  const frame = document.createElement("div");
-  console.log(data);
-  switch (type) {
-    case "polaroid":
-      const polaroids = data.map((prop) => Polaroid(prop));
-      polaroids.forEach((polaroid) => frame.appendChild(polaroid));
-      break;
-    case "strip":
-      const strips = data.map((prop) => Strip(prop));
-      strips.forEach((strip) => frame.appendChild(strip));
-      break;
-  }
+function Panel(data) {
+  const panel = document.createElement("div");
+  const partner = document.createElement("h2");
 
+  partner.textContent = data.partner;
+
+  const project = Project(data.projects);
+  panel.classList.add("panel");
+  panel.appendChild(partner);
+  panel.appendChild(project);
+
+  return panel;
+}
+
+function Frame(data, type) {
+  const frame = document.createElement("div");
+  const polaroids = data.map((prop) => Polaroid(prop));
+  polaroids.forEach((polaroid) => frame.appendChild(polaroid));
   frame.classList.add("frame");
 
   return frame;
 }
+
+export { Frame, Panel };
