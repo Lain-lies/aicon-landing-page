@@ -108,4 +108,19 @@ const localData = [
   },
 ];
 
-export { intData, localData };
+const productData = [
+  "https://ik.imagekit.io/aicon/aiconprojx/featuredproduct1.png?updatedAt=1760405543757",
+  "https://ik.imagekit.io/aicon/aiconprojx/featuredproduct1.png?updatedAt=1760405543757",
+  "https://ik.imagekit.io/aicon/aiconprojx/featuredproduct3.png?updatedAt=1760405544859",
+  "https://ik.imagekit.io/aicon/aiconprojx/featuredproduct4.png?updatedAt=1760405545070",
+];
+
+const rentalData = [
+  "https://ik.imagekit.io/aicon/aiconprojx/rental1.png?updatedAt=1760407951068",
+  "https://ik.imagekit.io/aicon/aiconprojx/rental2.png?updatedAt=1760407951002",
+  "https://ik.imagekit.io/aicon/aiconprojx/rental3.png?updatedAt=1760407951266",
+  "https://ik.imagekit.io/aicon/aiconprojx/rental4.png?updatedAt=1760407951136",
+  "https://ik.imagekit.io/aicon/aiconprojx/rental5.png?updatedAt=1760407950901",
+  "https://ik.imagekit.io/aicon/aiconprojx/rental6.png?updatedAt=1760407948929",
+];
+export { intData, localData, productData, rentalData };

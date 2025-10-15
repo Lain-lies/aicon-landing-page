@@ -1,11 +1,12 @@
 import "./services.css";
-import { Carousel } from "./Frame.js";
-import test from "./assets/test.jpg";
-import test2 from "./assets/test2.jpg";
-import test3 from "./assets/test3.jpg";
-
-const assets = [test, test2, test3];
+import { Carousel, CarouselSwipe } from "./Frame.js";
+import { productData as products, rentalData as rentals } from "./data.js";
 
 const body = document.querySelector("body");
-const carousel = Carousel(assets);
+const carouselSwipe = CarouselSwipe(products);
+const carousel = Carousel(products);
+const rentalCarousel = Carousel(rentals);
+
 body.appendChild(carousel);
+body.appendChild(carouselSwipe);
+body.appendChild(rentalCarousel);

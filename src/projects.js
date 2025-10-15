@@ -1,3 +1,4 @@
+import "./projects.css";
 import { Frame, Panel } from "./Frame";
 import { intData, localData } from "./data";
 
@@ -35,13 +36,11 @@ function intProjectInit() {
       showButton.classList.toggle("hidden");
     }
   });
-
 }
-
 
 function localProjectInit() {
   const panelContainer = document.querySelector(
-    ".local-projects .panel-container"
+    ".local-projects .panel-container",
   );
 
   const panelDOM = localData.map((data) => Panel(data));

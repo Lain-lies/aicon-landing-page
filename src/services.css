@@ -2,14 +2,42 @@
   box-sizing: border-box;
 }
 
-.image-container {
-  display: none;
-  width: 500px;
-  height: 500px;
-  overflow: hidden;
-  border: 1px solid black;
+@import "./about.css";
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
+.image-container {
+  display: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+img {
+  pointer-events: none;
+}
+
+.carousel-btn {
+  z-index: 1;
+  font-size: 5rem;
+  color: #f3cc8e;
+  background-color: inherit;
+  text-align: center;
+  border: none;
+  padding: 1rem;
+  opacity: 0.5;
+}
+
+.carousel-btn:hover {
+  cursor: pointer;
+  background-color: white;
+  opacity: 0.5;
+  color: #f3cc8e;
+}
 .show {
   display: block;
 }
