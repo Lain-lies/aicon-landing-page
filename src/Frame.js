@@ -63,6 +63,8 @@ function Frame(data, type) {
   return frame;
 }
 
+function slideLeft() {}
+
 function Carousel(assets) {
   const max = assets.length - 1;
   const min = 0;
@@ -170,21 +172,30 @@ function CarouselSwipe(assets) {
     right: document.createElement("button"),
   };
 
+  const SwipeState = {
+    mousedown: false,
+    rightThreshold: false,
+    leftThreshold: false,
+    thresholdValue: undefined,
+    startingX: undefined,
+  };
+  
   let mousedown = false;
   let rightThreshold = false;
   let leftThreshold = false;
   let thresholdValue = undefined;
   let startingX = undefined;
 
-  wrapper.addEventListener("mousedown", (e) => {
-    startingX = e.offsetX;
+  wrapper.addEventListener("touchstart", (e) => {
+    startingX = e.touches[0].clientX - e.target.offsetLeft;
     mousedown = true;
+    console.log(startingX);
   });
 
-  wrapper.addEventListener("mousemove", (e) => {
+  wrapper.addEventListener("touchmove", (e) => {
     if (!mousedown || rightThreshold || leftThreshold) return;
 
-    if (e.offsetX > startingX) {
+    if (e.touches[0].clientX > startingX) {
       thresholdValue = getRightThreshold(startingX, wrapper);
       rightThreshold = true;
     } else {
@@ -193,8 +204,8 @@ function CarouselSwipe(assets) {
     }
   });
 
-  wrapper.addEventListener("mousemove", (e) => {
-    if (rightThreshold && e.offsetX >= thresholdValue) {
+  wrapper.addEventListener("touchmove", (e) => {
+    if (rightThreshold && e.touches[0].clientX >= thresholdValue) {
       const previousImage = images[current];
 
       previousImage.classList.toggle("slide-right");
@@ -220,7 +231,7 @@ function CarouselSwipe(assets) {
       return;
     }
 
-    if (leftThreshold && e.offsetX <= thresholdValue) {
+    if (leftThreshold && e.touches[0].clientX <= thresholdValue) {
       const previousImage = images[current];
 
       previousImage.classList.toggle("slide-left");
@@ -262,8 +273,8 @@ function getRightThreshold(x, wrapper) {
 
 function getLeftThreshold(x, wrapper) {
   const multiplier = 2;
-  const width = wrapper.getBoundingClientRect().width;
   const threshold = x - x / multiplier;
+
   console.log(threshold);
 
   return threshold;
