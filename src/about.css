@@ -137,6 +137,22 @@ main {
   white-space: nowrap;
 }
 
+.mis-label,
+.vis-label {
+  font-size: clamp(1.2rem, 2rem + 2vw, 4rem);
+  padding: 1rem;
+}
+
+.mis-label h2::before,
+.vis-label h2::before {
+  content: "our  ";
+  display: block;
+  color: #f3cc8e;
+  height: min-content;
+  line-height: 0;
+  font-size: clamp(1rem, 2rem, 4rem);
+}
+
 .mis {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -154,22 +170,6 @@ main {
 
 .mis-content .list {
   margin-bottom: 1rem;
-}
-
-.mis-label,
-.vis-label {
-  font-size: clamp(1.2rem, 2rem + 2vw, 4rem);
-  padding: 1rem;
-}
-
-.mis-label h2::before,
-.vis-label h2::before {
-  content: "our  ";
-  display: block;
-  color: #f3cc8e;
-  height: min-content;
-  line-height: 0;
-  font-size: clamp(1rem, 2rem, 4rem);
 }
 
 .vis {
@@ -192,6 +192,7 @@ main {
 .vis-label h2::before {
   display: inline;
 }
+
 
 .officers-label {
   text-align: center;
@@ -230,15 +231,16 @@ main {
   background: linear-gradient(
     0deg,
     rgba(243, 204, 142, 1) 50%,
-    rgba(0, 0, 0, 1) 50%
+    rgba(24, 24, 24, 1) 50%
   );
   display: grid;
   grid-template-columns: 2fr 1.5fr;
+  border-radius: 5px;
 }
 
 .profile .name {
   color: #000;
-  justify-self: center;
+  justify-self: center; 
   align-self: flex-end;
   font-size: clamp(1rem, 1rem + 1vw, 2.5rem);
   margin-bottom: 6rem;
@@ -249,7 +251,7 @@ main {
   margin: 1rem;
   margin-bottom: 0;
   justify-self: end;
-  min-width: 220px;
+  min-width: 100px;
 }
 
 .officers-ceo .label,
@@ -273,9 +275,7 @@ main {
   grid-template-columns: 1fr 2fr;
   gap: 1rem;
   transform: translateX(100%);
-  transition:
-    transform 1s ease,
-    opacity 1s ease;
+  transition: transform 1s ease;
 }
 
 .cfo-show {
@@ -285,6 +285,19 @@ main {
 .cfo-show .more {
   grid-column-start: -2;
   grid-column-end: -1;
+}
+
+.officers-cfo .profile {
+  background: linear-gradient(
+    0deg,
+    rgba(243, 204, 142, 1) 50%,
+    rgba(24, 24, 24, 1) 50%
+  );
+
+}
+
+.officers-cfo .profile .name{
+  font-size: clamp(1rem, 0.7rem + 0.7vw, 3rem);
 }
 
 .ending {
@@ -351,13 +364,72 @@ footer .copyright {
   }
   .mis-label {
     padding-right: 3rem;
-    /* align-self:start; */
   }
   .profile .image-container {
     margin: 0;
   }
-
   .profile .name {
     margin-bottom: 3rem;
   }
 }
+
+@media(max-width: 775px){
+
+  .nav-contact-button{
+    display: none;
+  }
+  .officers-ceo,
+  .officers-cfo {
+    display: block;
+    transform: translate(0%);
+  }
+
+  
+  .officers-ceo .profile .name{
+    font-size: clamp(0.7rem, 1rem + 0.5vw, 2rem);
+  }
+
+  .profile .name {
+    margin-bottom: 2.5rem;
+  }
+
+  .officers-ceo .label,
+  .officers-cfo .label {
+    display: none;
+  }
+
+  .officers-ceo .profile .name::after{
+    content: "CEO";
+    color: #000;
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  .officers-cfo .profile .name::after{
+    content: "CFO";
+    color: #000;
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  .officers-cfo .profile .name{
+    font-size: clamp(0.5rem, 0.75rem + 0.2vw, 2rem);
+  }
+
+  .officers-ceo .more,
+  .cfo-show .more {
+    padding: 2rem;
+    font-size: 1.1rem;
+    line-height: 2;
+  }
+
+}
+
+@media(max-width: 500px){
+  .profile .name {
+    margin-bottom: 1rem;
+  }
+}
+
