@@ -63,59 +63,62 @@ function Frame(data, type) {
   return frame;
 }
 
-function slideRight(state, images) {
+function slide(state, images, button, toRight, isMobile) {
+  console.log(`toRight ${toRight}`);
+  let _class = null;
+
+  if (toRight === true) _class = "slide-right";
+  else if (toRight === false) _class = "slide-left";
+  else return;
+
+  const nextSlide = () => {
+    const temp = state.current + 1;
+    return temp > state.max ? state.min : temp;
+  };
+
+  const previousSlide = () => {
+    const temp = state.current - 1;
+    return temp < state.min ? state.max : temp;
+  };
+
   const previousImage = images[state.current];
 
-  previousImage.classList.toggle("slide-right");
+  previousImage.classList.toggle(_class);
+  if (button !== null) button.disabled = true;
 
-  setTimeout(() => {
-    previousImage.classList.toggle("show");
-    previousImage.classList.toggle("slide-right");
+  previousImage.addEventListener(
+    "transitionend",
+    () => {
+      previousImage.classList.toggle("show");
+      previousImage.classList.toggle(_class);
 
-    const temp = state.current + 1;
-    temp > state.max ? (state.current = state.min) : (state.current = temp);
+      state.current = toRight ? nextSlide() : previousSlide();
 
-    const nextImage = images[state.current];
-    nextImage.classList.toggle("show");
-    nextImage.classList.toggle("set-left");
-    setTimeout(() => nextImage.classList.toggle("set-left"), 50);
-    
-  }, 200);
-  state.mousedown = false;
-  state.rightThreshold = false;
-  state.leftThreshold = false;
-  state.thresholdValue = undefined;
-  state.startingX = undefined;
-}
+      const nextImage = images[state.current];
+      nextImage.classList.toggle("show");
 
-function slideLeft(state, images) {
-  const previousImage = images[state.current];
+      if (isMobile) {
+        state.touchStart = false;
+        state.rightThreshold = false;
+        state.leftThreshold = false;
+        state.thresholdValue = undefined;
+        state.startingX = undefined;
+      }
 
-  previousImage.classList.toggle("slide-left");
+      if (button !== null) button.disabled = false;
 
-  setTimeout(() => {
-    previousImage.classList.toggle("show");
-    previousImage.classList.toggle("slide-left");
-
-    const temp = state.current + 1;
-    temp > state.max ? (state.current = state.min) : (state.current = temp);
-
-    const nextImage = images[state.current];
-    nextImage.classList.toggle("show");
-    nextImage.classList.toggle("set-right");
-    setTimeout(() => nextImage.classList.toggle("set-right"), 50);
-  }, 200);
-  state.mousedown = false;
-  state.rightThreshold = false;
-  state.leftThreshold = false;
-  state.thresholdValue = undefined;
-  state.startingX = undefined;
+      console.log(state);
+    },
+    { once: true },
+  );
 }
 
 function Carousel(assets) {
-  const max = assets.length - 1;
-  const min = 0;
-  let current = 0;
+  const state = {
+    max: assets.length - 1,
+    min: 0,
+    current: 0,
+  };
 
   const carousel = document.createElement("div");
   carousel.classList.add("carousel");
@@ -128,7 +131,7 @@ function Carousel(assets) {
     return imageContainer;
   });
 
-  images[current].classList.toggle("show");
+  images[state.current].classList.toggle("show");
 
   console.log(images);
   const button = {
@@ -138,53 +141,16 @@ function Carousel(assets) {
 
   button.left.textContent = "<";
   button.right.textContent = ">";
-
   button.left.classList.add("carousel-btn");
   button.right.classList.add("carousel-btn");
 
-  button.left.addEventListener("click", (e) => {
-    e.target.disabled = true;
+  button.left.addEventListener("click", (e) =>
+    slide(state, images, e.target, false),
+  );
 
-    const previousImage = images[current];
-
-    previousImage.classList.toggle("slide-left");
-
-    setTimeout(() => {
-      previousImage.classList.toggle("show");
-      previousImage.classList.toggle("slide-left");
-
-      const temp = current - 1;
-      temp < min ? (current = max) : (current = temp);
-
-      const nextImage = images[current];
-      nextImage.classList.toggle("show");
-      nextImage.classList.toggle("set-right");
-      setTimeout(() => nextImage.classList.toggle("set-right"), 50);
-      setTimeout(() => (e.target.disabled = false), 500);
-    }, 200);
-  });
-
-  button.right.addEventListener("click", (e) => {
-    e.target.disabled = true;
-
-    const previousImage = images[current];
-
-    previousImage.classList.toggle("slide-right");
-
-    setTimeout(() => {
-      previousImage.classList.toggle("show");
-      previousImage.classList.toggle("slide-right");
-
-      const temp = current + 1;
-      temp > max ? (current = min) : (current = temp);
-
-      const nextImage = images[current];
-      nextImage.classList.toggle("show");
-      nextImage.classList.toggle("set-left");
-      setTimeout(() => nextImage.classList.toggle("set-left"), 50);
-      setTimeout(() => (e.target.disabled = false), 500);
-    }, 200);
-  });
+  button.right.addEventListener("click", (e) =>
+    slide(state, images, e.target, true),
+  );
 
   carousel.appendChild(button.left);
   images.forEach((image) => carousel.appendChild(image));
@@ -203,6 +169,7 @@ function CarouselSwipe(assets) {
     leftThreshold: false,
     thresholdValue: undefined,
     startingX: undefined,
+    delay: false,
   };
 
   const carousel = document.createElement("div");
@@ -227,30 +194,50 @@ function CarouselSwipe(assets) {
   });
 
   wrapper.addEventListener("touchmove", (e) => {
-    if (!state.touchStart || state.rightThreshold || state.leftThreshold)
+    if (!state.touchStart || state.leftThreshold || state.rightThreshold)
       return;
 
-    if (e.touches[0].clientX > state.startingX) {
+    const current = e.touches[0].clientX - e.target.offsetLeft;
+
+    if (current > state.startingX) {
       state.thresholdValue = getRightThreshold(state.startingX, wrapper);
       state.rightThreshold = true;
+      return;
     }
 
-    if (e.touches[0].clientX < state.startingX) {
+    if (current < state.startingX) {
       state.thresholdValue = getLeftThreshold(state.startingX, wrapper);
+      console.log(`left threshold value ${state.thresholdValue}`);
       state.leftThreshold = true;
+      return;
     }
 
     return;
   });
 
   wrapper.addEventListener("touchmove", (e) => {
-    if (state.rightThreshold && e.touches[0].clientX >= state.thresholdValue) {
-      slideRight(state, images);
+    const current = e.touches[0].clientX - e.target.offsetLeft;
+
+    if (
+      state.rightThreshold &&
+      current >= state.thresholdValue &&
+      !state.delay
+    ) {
+      slide(state, images, null, true, true);
+      state.delay = true;
+      setTimeout(() => (state.delay = false), 1000);
       return;
     }
 
-    if (state.leftThreshold && e.touches[0].clientX <= state.thresholdValue) {
-      slideLeft(state, images);
+    if (
+      state.leftThreshold &&
+      current <= state.thresholdValue &&
+      !state.delay
+    ) {
+      slide(state, images, null, false, true);
+      state.delay = true;
+      setTimeout(() => (state.delay = false), 1000);
+      return;
     }
 
     return;
@@ -262,19 +249,15 @@ function CarouselSwipe(assets) {
   return carousel;
 }
 
-function getRightThreshold(x, wrapper) {
+function getRightThreshold(startingX, wrapper) {
   const multiplier = 0.5;
   const width = wrapper.getBoundingClientRect().width;
-  console.log(width);
-  return (width - x) * multiplier + x;
+  return (width - startingX) * multiplier + startingX;
 }
 
-function getLeftThreshold(x, wrapper) {
+function getLeftThreshold(startingX) {
   const multiplier = 2;
-  const threshold = x - x / multiplier;
-
-  console.log(threshold);
-
-  return threshold;
+  return startingX - startingX / multiplier;
 }
+
 export { Frame, Panel, Carousel, CarouselSwipe };

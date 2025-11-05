@@ -123,4 +123,32 @@ const rentalData = [
   "https://ik.imagekit.io/aicon/aiconprojx/rental5.png?updatedAt=1760407950901",
   "https://ik.imagekit.io/aicon/aiconprojx/rental6.png?updatedAt=1760407948929",
 ];
-export { intData, localData, productData, rentalData };
+
+const productDataMobile = [
+  "https://ik.imagekit.io/aicon/aiconprojx/mfeaturedproduct1.png?updatedAt=1761531389000",
+  "https://ik.imagekit.io/aicon/aiconprojx/mfeaturedproduct2.png?updatedAt=1761531388946",
+  "https://ik.imagekit.io/aicon/aiconprojx/mfeaturedproduct3.png?updatedAt=1761531389082",
+  "https://ik.imagekit.io/aicon/aiconprojx/mfeaturedproduct4.png?updatedAt=1761531388842",
+  "https://ik.imagekit.io/aicon/aiconprojx/mfeaturedproduct5.png?updatedAt=1761531389228",
+  "https://ik.imagekit.io/aicon/aiconprojx/mfeaturedproduct6.png?updatedAt=1761531389099",
+];
+
+const rentalDataMobile = [
+  "https://ik.imagekit.io/aicon/aiconprojx/mrental1.png?updatedAt=1761535167014",
+  "https://ik.imagekit.io/aicon/aiconprojx/mrental2.png?updatedAt=1761535167108",
+  "https://ik.imagekit.io/aicon/aiconprojx/mrental3.png?updatedAt=1761535167023",
+  "https://ik.imagekit.io/aicon/aiconprojx/mrental4.png?updatedAt=1761535167431",
+  "https://ik.imagekit.io/aicon/aiconprojx/mrental5.png?updatedAt=1761535167492",
+  "https://ik.imagekit.io/aicon/aiconprojx/mrental6.png?updatedAt=1761535167441",
+  "https://ik.imagekit.io/aicon/aiconprojx/mrental7.png?updatedAt=1761535167477",
+  "https://ik.imagekit.io/aicon/aiconprojx/mrental8.png?updatedAt=1761535167420",
+];
+
+export {
+  intData,
+  localData,
+  productData,
+  rentalData,
+  productDataMobile,
+  rentalDataMobile,
+};
