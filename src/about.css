@@ -359,9 +359,11 @@ footer .copyright {
   .profile .image-container {
     margin: 0;
   }
+
   .profile .name {
     margin-bottom: 3rem;
   }
+
   .mis-content {
     padding: 1.5rem;
   }
@@ -369,7 +371,6 @@ footer .copyright {
   footer {
     margin-top: 1rem;
   }
-
   .footer-content {
     padding: 0rem;
     gap: 0.5rem;
@@ -442,7 +443,7 @@ footer .copyright {
   }
 
   .main-banner {
-    width: 75vw;
+    width: 75vw; 
     margin: 2rem 0rem;
   }
 

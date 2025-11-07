@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  color: white;
 }
 
 @import "./about.css";
@@ -72,7 +73,7 @@ main {
   white-space: nowrap;
 }
 
-.carousel {
+.wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,6 +88,13 @@ main {
 
 img {
   pointer-events: none;
+}
+
+.carousel {
+  margin-bottom: 10rem;
+  border-top: 1px solid #f3cc8e;
+  border-bottom: 1px solid #f3cc8e;
+  padding: 2rem;
 }
 
 .carousel-btn {
@@ -125,6 +133,164 @@ img {
   transition: transform 500ms ease;
 }
 
-.wrapper {
-  outline: 1px solid blue;
+.indicator {
+  display: flex;
+  justify-content: center;
+  line-height: 0;
+  gap: 0.5rem;
+}
+
+.index {
+  font-size: 5rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 1rem;
+  background-color: rgb(255, 255, 255, 0.3);
+}
+
+.index-selected {
+  background-color: rgb(255, 255, 255, 1);
+}
+
+.banner {
+  padding: 0.5rem 10rem;
+}
+
+.banner .text {
+  font-size: 4rem;
+  text-align: center;
+  color: #f3cc8e;
+}
+
+.carousel-mobile {
+  display: none;
+}
+
+.product-name {
+  padding: 1rem;
+  background: #f3cc8e;
+  border: 1px solid;
+  color: #000;
+  font-size: 1.2rem;
+}
+
+.product-name:hover {
+  cursor: pointer;
+}
+
+.inactive {
+  display: none;
+}
+
+.catalog {
+  padding-bottom: 5rem;
+}
+label,
+select {
+  font-size: 1.5rem;
+  margin: 3rem 0rem 1rem 0rem;
+}
+
+label {
+  margin-left: 5rem;
+}
+
+select {
+  padding: 0.5rem 1rem;
+}
+
+select,
+option {
+  color: black;
+}
+
+option:hover {
+  cursor: pointer;
+}
+
+.content-wrapper {
+  height: 80vh;
+  overflow-y: scroll;
+  padding: 0rem 5rem;
+}
+
+.inner-list {
+  font-size: 1.2rem;
+  padding: 1rem;
+  padding-left: 2rem;
+}
+
+.product-active::before {
+  content: "▼ ";
+  color: #000;
+}
+
+.product-inactive::before {
+  content: "► ";
+  color: #000;
+}
+
+.int-projects {
+  margin-bottom: 10rem;
+}
+
+.int-projects h1,
+.local-projects h1 {
+  text-align: center;
+  font-size: 5rem;
+  margin-bottom: 5rem;
+}
+
+.polaroid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 2rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.frame .image-container {
+  width: 75%;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.frame .image-container img {
+  border: 12px solid white;
+  border-bottom: 65px solid white;
+}
+
+.polaroid {
+  padding: 2rem;
+}
+
+.polaroid p {
+  font-size: 2rem;
+  opacity: 0.9;
+  text-align: center;
+}
+
+.show-button {
+  display: block;
+  margin: 0 auto;
+  width: 70%;
+  padding: 1rem 1rem;
+  font-size: 3rem;
+  color: hsl(0, 0%, 100%);
+  font-family: sans-serif;
+  opacity: 0.5;
+  background-color: #181818;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border: 3px solid rgb(255, 255, 255, 0.3);
+  border-top: none;
+}
+
+.show-button:hover {
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
 }

@@ -1,6 +1,6 @@
-let state = 1;
-
 function Polaroid(data) {
+  let state = 1;
+
   const container = document.createElement("div");
   const imageContainer = document.createElement("div");
   const img = document.createElement("img");
@@ -54,7 +54,7 @@ function Panel(data) {
   return panel;
 }
 
-function Frame(data, type) {
+function Frame(data) {
   const frame = document.createElement("div");
   const polaroids = data.map((prop) => Polaroid(prop));
   polaroids.forEach((polaroid) => frame.appendChild(polaroid));
@@ -63,7 +63,7 @@ function Frame(data, type) {
   return frame;
 }
 
-function slide(state, images, button, toRight, isMobile) {
+function slide(state, images, button, indices, toRight, isMobile) {
   console.log(`toRight ${toRight}`);
   let _class = null;
 
@@ -92,7 +92,11 @@ function slide(state, images, button, toRight, isMobile) {
       previousImage.classList.toggle("show");
       previousImage.classList.toggle(_class);
 
+      indices[state.current].classList.toggle("index-selected");
+
       state.current = toRight ? nextSlide() : previousSlide();
+
+      indices[state.current].classList.toggle("index-selected");
 
       const nextImage = images[state.current];
       nextImage.classList.toggle("show");
@@ -113,7 +117,7 @@ function slide(state, images, button, toRight, isMobile) {
   );
 }
 
-function Carousel(assets) {
+function Carousel(assets, description) {
   const state = {
     max: assets.length - 1,
     min: 0,
@@ -121,7 +125,13 @@ function Carousel(assets) {
   };
 
   const carousel = document.createElement("div");
+  const banner = Banner(description);
+  const indicator = Indicator(state.max);
+  const wrapper = document.createElement("div");
+
+  wrapper.classList.add("wrapper");
   carousel.classList.add("carousel");
+
   const images = assets.map((asset) => {
     const imageContainer = document.createElement("div");
     const img = document.createElement("img");
@@ -133,7 +143,6 @@ function Carousel(assets) {
 
   images[state.current].classList.toggle("show");
 
-  console.log(images);
   const button = {
     left: document.createElement("button"),
     right: document.createElement("button"),
@@ -144,17 +153,21 @@ function Carousel(assets) {
   button.left.classList.add("carousel-btn");
   button.right.classList.add("carousel-btn");
 
-  button.left.addEventListener("click", (e) =>
-    slide(state, images, e.target, false),
-  );
+  button.left.addEventListener("click", (e) => {
+    slide(state, images, e.target, indicator.indices, false, false);
+  });
 
   button.right.addEventListener("click", (e) =>
-    slide(state, images, e.target, true),
+    slide(state, images, e.target, indicator.indices, true, false),
   );
 
-  carousel.appendChild(button.left);
-  images.forEach((image) => carousel.appendChild(image));
-  carousel.appendChild(button.right);
+  wrapper.appendChild(button.left);
+  images.forEach((image) => wrapper.appendChild(image));
+  wrapper.appendChild(button.right);
+
+  carousel.appendChild(banner);
+  carousel.appendChild(wrapper);
+  carousel.appendChild(indicator.wrapper);
 
   return carousel;
 }
@@ -174,8 +187,9 @@ function CarouselSwipe(assets) {
 
   const carousel = document.createElement("div");
   const wrapper = document.createElement("div");
+  const indicator = Indicator(state.max);
 
-  carousel.classList.add("carousel");
+  carousel.classList.add("carousel-mobile");
   const images = assets.map((asset) => {
     const imageContainer = document.createElement("div");
     const img = document.createElement("img");
@@ -223,7 +237,7 @@ function CarouselSwipe(assets) {
       current >= state.thresholdValue &&
       !state.delay
     ) {
-      slide(state, images, null, true, true);
+      slide(state, images, null, indicator.indices, true, true);
       state.delay = true;
       setTimeout(() => (state.delay = false), 1000);
       return;
@@ -234,7 +248,7 @@ function CarouselSwipe(assets) {
       current <= state.thresholdValue &&
       !state.delay
     ) {
-      slide(state, images, null, false, true);
+      slide(state, images, null, indicator.indices, false, true);
       state.delay = true;
       setTimeout(() => (state.delay = false), 1000);
       return;
@@ -245,7 +259,7 @@ function CarouselSwipe(assets) {
 
   images.forEach((image) => wrapper.appendChild(image));
   carousel.appendChild(wrapper);
-
+  carousel.appendChild(indicator.wrapper);
   return carousel;
 }
 
@@ -260,4 +274,124 @@ function getLeftThreshold(startingX) {
   return startingX - startingX / multiplier;
 }
 
-export { Frame, Panel, Carousel, CarouselSwipe };
+function Indicator(length) {
+  const wrapper = document.createElement("div");
+
+  wrapper.classList.add("indicator");
+  const indices = [];
+
+  for (let i = 0; i <= length; i++) {
+    const index = document.createElement("div");
+    index.classList.add("index");
+    indices.push(index);
+  }
+
+  indices.forEach((index) => wrapper.appendChild(index));
+  indices[0].classList.toggle("index-selected");
+  return {
+    wrapper,
+    indices,
+  };
+}
+
+function Banner(description) {
+  const wrapper = document.createElement("div");
+  const text = document.createElement("h2");
+
+  wrapper.classList.add("banner");
+  text.classList.add("text");
+  text.textContent = description;
+
+  wrapper.appendChild(text);
+  return wrapper;
+}
+
+function Catalog(options, listArray) {
+  const state = { selectedIndex: 0 };
+  const catalog = document.createElement("div");
+  const banner = Banner("Product Catalog");
+  const label = document.createElement("label");
+  const selector = document.createElement("select");
+  const contentWrapper = document.createElement("div");
+  const content = listArray.map((list) => {
+    const ul = document.createElement("ul");
+    list.forEach((item) => {
+      const li = document.createElement("li");
+      const temp = List(item);
+      li.appendChild(temp);
+      ul.appendChild(li);
+    });
+
+    return ul;
+  });
+  const updateContent = (value) => {
+    contentWrapper.removeChild(content[state.selectedIndex]);
+    state.selectedIndex = value;
+    contentWrapper.appendChild(content[state.selectedIndex]);
+  };
+
+  catalog.classList.add("catalog");
+  contentWrapper.classList.add("content-wrapper");
+
+  label.for = "product-type";
+  label.textContent = "Product Type: ";
+  selector.id = "product-type";
+
+  options.forEach((option, index) => {
+    const node = document.createElement("option");
+    node.value = index;
+    node.textContent = option;
+    selector.appendChild(node);
+  });
+
+  selector.addEventListener("change", (e) => {
+    updateContent(e.target.value);
+  });
+
+  contentWrapper.appendChild(content[state.selectedIndex]);
+  catalog.appendChild(banner);
+  catalog.appendChild(label);
+  catalog.appendChild(selector);
+  catalog.appendChild(contentWrapper);
+
+  return catalog;
+}
+
+function List(product) {
+  const wrapper = document.createElement("div");
+  const name = document.createElement("p");
+  const ul = document.createElement("ul");
+
+  name.classList.add("product-name");
+  name.classList.add("product-inactive");
+  ul.classList.add("inactive");
+  ul.classList.add("inner-list");
+
+  wrapper.appendChild(name);
+
+  if (product.list === undefined) {
+    name.textContent = product.name;
+    console.log("test1");
+    return wrapper;
+  }
+
+  name.textContent = product.name;
+
+  product.list.forEach((item) => {
+    const node = document.createElement("li");
+    node.textContent = `- ${item}`;
+    ul.appendChild(node);
+  });
+
+  name.addEventListener("click", () => {
+    ul.classList.toggle("inactive");
+    name.classList.toggle("product-active");
+    name.classList.toggle("product-inactive");
+  });
+
+  wrapper.appendChild(ul);
+
+  return wrapper;
+}
+
+export { Frame, Panel, Carousel, CarouselSwipe, Catalog };
