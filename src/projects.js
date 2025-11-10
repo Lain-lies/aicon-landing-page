@@ -2,40 +2,26 @@ import "./projects.css";
 import { Frame, Panel } from "./Frame";
 import { intData, localData } from "./data";
 
-function intProjectInit() {
-  const frameContainer = document.querySelector(
-    ".int-projects .frame-container",
-  );
-  const showButton = document.querySelector(".int-projects .show-button");
 
+function intProjectInit() {
+  const section = document.querySelector(".int-projects");
   const maxPolaroid = 4;
-  const state = [];
+  const maxFrames = 4;
+  const data = [];
   let start = 0;
   let end = 4;
 
+  // divide projects to 4
   while (true) {
     const sliced = intData.slice(start, end);
     if (sliced.length === 0) break;
-    state.push(sliced);
+    data.push(sliced);
     start = end;
     end += maxPolaroid;
   }
 
-  let activeFrames = 0;
+  section.appendChild(Frame(data, maxPolaroid, maxFrames));
 
-  const framesDOM = state.map((frame) => Frame(frame));
-  framesDOM[activeFrames].classList.remove("hidden");
-  framesDOM.forEach((node) => frameContainer.appendChild(node));
-
-  showButton.addEventListener("click", () => {
-    const frame = framesDOM[++activeFrames];
-    frame.classList.remove("hidden");
-
-    const nextFrame = activeFrames + 1;
-    if (framesDOM[nextFrame] === undefined) {
-      showButton.classList.toggle("hidden");
-    }
-  });
 }
 
 function localProjectInit() {

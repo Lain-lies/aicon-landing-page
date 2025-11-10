@@ -1,6 +1,7 @@
-function Polaroid(data) {
-  let state = 1;
+import { intData } from "./data";
 
+function Polaroid(data, order) {
+ 
   const container = document.createElement("div");
   const imageContainer = document.createElement("div");
   const img = document.createElement("img");
@@ -10,7 +11,7 @@ function Polaroid(data) {
 
   imageContainer.appendChild(img);
 
-  if (state % 2) {
+  if (order % 2) {
     container.appendChild(imageContainer);
     container.appendChild(name);
   } else {
@@ -20,8 +21,53 @@ function Polaroid(data) {
 
   imageContainer.classList.add("image-container");
   container.classList.add("polaroid");
-  state += 1;
   return container;
+}
+
+function Frame(data, maxPolaroid, maxFrames) {
+  const state = {
+    activeFrames: 0,
+  }
+  const mainWrapper = document.createElement("div");
+  const framesWrapper = document.createElement("div");
+  const showButton = document.createElement("button");
+  const frames = [];
+  const polaroids = [];
+
+  showButton.textContent = "V";
+  showButton.classList.add("show-button");
+
+  for(let i = 0; i < maxFrames; i++){
+    const node = document.createElement("div");
+    node.classList.add("frame");
+    node.classList.add("hidden");
+    frames.push(node);
+  }
+
+  data.forEach(list => {
+    const temp = [];
+    list.forEach((item, index) => temp.push(Polaroid(item, index)));
+    polaroids.push(temp);
+  })
+   
+  frames.forEach((frame, index) => {
+    polaroids[index].forEach(polaroid => frame.appendChild(polaroid));
+    framesWrapper.appendChild(frame);
+  });
+
+  frames[state.activeFrames].classList.remove("hidden");
+  
+  showButton.addEventListener("click", () => {
+    frames[++state.activeFrames].classList.remove("hidden");
+    const nextFrame = state.activeFrames + 1;
+    if (frames[nextFrame] === undefined) {
+      showButton.classList.toggle("hidden");
+    }
+  })
+
+  mainWrapper.appendChild(framesWrapper);
+  mainWrapper.appendChild(showButton);
+  return mainWrapper;
 }
 
 function Project(projects) {
@@ -52,15 +98,6 @@ function Panel(data) {
   panel.appendChild(project);
 
   return panel;
-}
-
-function Frame(data) {
-  const frame = document.createElement("div");
-  const polaroids = data.map((prop) => Polaroid(prop));
-  polaroids.forEach((polaroid) => frame.appendChild(polaroid));
-  frame.classList.add("frame");
-  frame.classList.add("hidden");
-  return frame;
 }
 
 function slide(state, images, button, indices, toRight, isMobile) {
