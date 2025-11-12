@@ -274,7 +274,7 @@ footer {
 }
 
 .footer-title-quote .short-quote {
-  display: none;
+  display: block;
 }
 
 .footer-socmed p,

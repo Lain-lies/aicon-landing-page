@@ -1,7 +1,12 @@
-import { intData } from "./data";
+import logo from "./assets/aiconlogo.png";
+import fbLogo from "./assets/footer_assets/fb.svg";
+import igLogo from "./assets/footer_assets/ig.svg";
+import xLogo from "./assets/footer_assets/x.svg";
+import ttLogo from "./assets/footer_assets/tt.svg";
+import liLogo from "./assets/footer_assets/li.svg";
+import emLogo from "./assets/footer_assets/em.svg";
 
 function Polaroid(data, order) {
- 
   const container = document.createElement("div");
   const imageContainer = document.createElement("div");
   const img = document.createElement("img");
@@ -27,7 +32,7 @@ function Polaroid(data, order) {
 function Frame(data, maxPolaroid, maxFrames) {
   const state = {
     activeFrames: 0,
-  }
+  };
   const mainWrapper = document.createElement("div");
   const framesWrapper = document.createElement("div");
   const showButton = document.createElement("button");
@@ -37,33 +42,33 @@ function Frame(data, maxPolaroid, maxFrames) {
   showButton.textContent = "V";
   showButton.classList.add("show-button");
 
-  for(let i = 0; i < maxFrames; i++){
+  for (let i = 0; i < maxFrames; i++) {
     const node = document.createElement("div");
     node.classList.add("frame");
     node.classList.add("hidden");
     frames.push(node);
   }
 
-  data.forEach(list => {
+  data.forEach((list) => {
     const temp = [];
     list.forEach((item, index) => temp.push(Polaroid(item, index)));
     polaroids.push(temp);
-  })
-   
+  });
+
   frames.forEach((frame, index) => {
-    polaroids[index].forEach(polaroid => frame.appendChild(polaroid));
+    polaroids[index].forEach((polaroid) => frame.appendChild(polaroid));
     framesWrapper.appendChild(frame);
   });
 
   frames[state.activeFrames].classList.remove("hidden");
-  
+
   showButton.addEventListener("click", () => {
     frames[++state.activeFrames].classList.remove("hidden");
     const nextFrame = state.activeFrames + 1;
     if (frames[nextFrame] === undefined) {
       showButton.classList.toggle("hidden");
     }
-  })
+  });
 
   mainWrapper.appendChild(framesWrapper);
   mainWrapper.appendChild(showButton);
@@ -431,4 +436,118 @@ function List(product) {
   return wrapper;
 }
 
-export { Frame, Panel, Carousel, CarouselSwipe, Catalog };
+function Navbar() {
+  const nav = document.createElement("nav");
+  nav.classList.add("nav");
+
+  const logoContainer = document.createElement("div");
+  logoContainer.classList.add("nav-logo-container");
+
+  const img = document.createElement("img");
+  img.src = logo;
+
+  logoContainer.appendChild(img);
+
+  const centerBar = document.createElement("div");
+  centerBar.classList.add("nav-center-bar");
+
+  const numberOfLinks = 4;
+
+  const linksData = [
+    { text: "Home", link: "#" },
+    { text: "About", link: "#" },
+    { text: "Projects", link: "#" },
+    { text: "Services", link: "#" },
+    { text: "Contacts", link: "#" },
+  ];
+
+  for (let i = 0; i <= numberOfLinks; i++) {
+    const linkData = linksData[i];
+    console.log(linkData.text);
+    const node = document.createElement("a");
+
+    if (i === numberOfLinks) {
+      node.classList.add("nav-center-bar-contact");
+    }
+    node.textContent = linkData.text;
+    node.href = linkData.link;
+    centerBar.appendChild(node);
+  }
+
+  const button = document.createElement("button");
+  button.textContent = "CONTACTS";
+  button.classList.add("nav-contact-button");
+
+  nav.appendChild(logoContainer);
+  nav.appendChild(centerBar);
+  nav.appendChild(button);
+
+  return nav;
+}
+
+function Footer(wrapper) {
+  wrapper.innerHTML = `
+
+  <div class="footer-content">
+
+    <div class="footer-title-quote">
+      <p class="title">AICON</p>
+      <p class="short-quote">
+        Construction Services, General Trading, & Services
+      </p>
+    </div>
+
+    <div class="footer-socmed">
+      <p class="label">CONNECT WITH US:</p>
+      <div class="footer-logos-wrapper">
+        <a href="https://www.facebook.com/ataiconsuph">
+          <div class="footer-logo-container">
+            <img src="${fbLogo}" alt="Facebook" />
+          </div>
+        </a>
+        <a href="https://www.instagram.com/aiconsuph">
+          <div class="footer-logo-container">
+            <img src="${igLogo}" alt="Instagram" />
+          </div>
+        </a>
+        <a href="https://x.com/aiconsuph">
+          <div class="footer-logo-container">
+            <img src="${xLogo}" alt="X" />
+          </div>
+        </a>
+        <a href="https://www.tiktok.com/@aiconsuph">
+          <div class="footer-logo-container">
+            <img src="${ttLogo}" alt="TikTok" />
+          </div>
+        </a>
+        <a href="https://ph.linkedin.com/company/aiconsuph">
+          <div class="footer-logo-container">
+            <img src="${liLogo}" alt="LinkedIn" />
+          </div>
+        </a>
+        <a href="mailto:inquireataiconsup@gmail.com">
+          <div class="footer-logo-container">
+            <img src="${emLogo}" alt="Email" />
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="footer-contacts">
+      <p class="label">CONTACTS</p>
+      <div class="numbers">
+        <p>+639087009307</p>
+        <p>+639936890205</p>
+      </div>
+  </div>
+</div>
+
+<p class="copyright">
+  &copy; ${new Date().getFullYear()} AICON Construction Supplies and General Trading Services
+</p>
+
+  `;
+}
+
+export { Frame, Panel, Carousel, CarouselSwipe, Catalog, Navbar, Footer };
