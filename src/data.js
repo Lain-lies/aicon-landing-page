@@ -589,6 +589,15 @@ const realEstateData = [
   },
 ];
 
+const productTypes = [
+  "Chemical Materials",
+  "Electrical Materials",
+  "Heavy Equipments",
+  "Aggregates",
+  "Electrical Products by JCMS",
+  "Wellness Products by JCMS",
+];
+
 export {
   intData,
   localData,
@@ -598,4 +607,5 @@ export {
   rentalDataMobile,
   catalogData,
   realEstateData,
+  productTypes
 };

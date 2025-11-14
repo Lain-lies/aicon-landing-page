@@ -1,7 +1,8 @@
 import "./projects.css";
-import { Frame, Panel } from "./Frame";
-import { intData, localData } from "./data";
+import "./master.css";
 
+import { Frame, Panel, Navbar, Footer } from "./Components.js";
+import { intData, localData } from "./data";
 
 function intProjectInit() {
   const section = document.querySelector(".int-projects");
@@ -21,7 +22,6 @@ function intProjectInit() {
   }
 
   section.appendChild(Frame(data, maxPolaroid, maxFrames));
-
 }
 
 function localProjectInit() {
@@ -47,6 +47,10 @@ function localProjectInit() {
 }
 
 function appInit() {
+  const navWrapper = document.querySelector(".nav-wrapper");
+  const footer = document.querySelector("footer");
+  navWrapper.appendChild(Navbar());
+  Footer(footer);
   intProjectInit();
   localProjectInit();
 }

@@ -354,7 +354,7 @@ function Catalog(options, listArray) {
   const banner = Banner("Product Catalog");
   const label = document.createElement("label");
   const selector = document.createElement("select");
-  const contentWrapper = document.createElement("div");
+  const productsWrapper = document.createElement("div");
   const content = listArray.map((list) => {
     const ul = document.createElement("ul");
     list.forEach((item) => {
@@ -367,13 +367,13 @@ function Catalog(options, listArray) {
     return ul;
   });
   const updateContent = (value) => {
-    contentWrapper.removeChild(content[state.selectedIndex]);
+    productsWrapper.removeChild(content[state.selectedIndex]);
     state.selectedIndex = value;
-    contentWrapper.appendChild(content[state.selectedIndex]);
+    productsWrapper.appendChild(content[state.selectedIndex]);
   };
 
   catalog.classList.add("catalog");
-  contentWrapper.classList.add("content-wrapper");
+  productsWrapper.classList.add("products-wrapper");
 
   label.for = "product-type";
   label.textContent = "Product Type: ";
@@ -390,11 +390,11 @@ function Catalog(options, listArray) {
     updateContent(e.target.value);
   });
 
-  contentWrapper.appendChild(content[state.selectedIndex]);
+  productsWrapper.appendChild(content[state.selectedIndex]);
   catalog.appendChild(banner);
   catalog.appendChild(label);
   catalog.appendChild(selector);
-  catalog.appendChild(contentWrapper);
+  catalog.appendChild(productsWrapper);
 
   return catalog;
 }
@@ -463,7 +463,6 @@ function Navbar() {
 
   for (let i = 0; i <= numberOfLinks; i++) {
     const linkData = linksData[i];
-    console.log(linkData.text);
     const node = document.createElement("a");
 
     if (i === numberOfLinks) {
@@ -549,5 +548,6 @@ function Footer(wrapper) {
 
   `;
 }
+
 
 export { Frame, Panel, Carousel, CarouselSwipe, Catalog, Navbar, Footer };

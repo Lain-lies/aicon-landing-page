@@ -1,5 +1,15 @@
 import "./services.css";
-import { Frame, Carousel, CarouselSwipe, Catalog } from "./Frame.js";
+import "./master.css";
+
+import {
+  Frame,
+  Carousel,
+  CarouselSwipe,
+  Catalog,
+  Navbar,
+  Footer,
+} from "./Components.js";
+
 import {
   productData as products,
   rentalData as rentals,
@@ -7,29 +17,26 @@ import {
   rentalDataMobile as rentalsM,
   catalogData,
   realEstateData,
+  productTypes,
 } from "./data.js";
 
-const body = document.querySelector("body");
-const carouselSwipe = CarouselSwipe(productsM, "");
-const carousel = Carousel(products, "Products");
-const rentalCarousel = Carousel(rentals, "Rentals");
-const rentalSwipe = CarouselSwipe(rentalsM, "Rentals");
+function init() {
+  const navWrapper = document.querySelector(".nav-wrapper");
+  const contentWrapper = document.querySelector(".content-wrapper");
+  const carouselSwipe = CarouselSwipe(productsM, "");
+  const carousel = Carousel(products, "Products");
+  const rentalCarousel = Carousel(rentals, "Rentals");
+  const rentalSwipe = CarouselSwipe(rentalsM, "Rentals");
+  const catalog = Catalog(productTypes, catalogData);
+  const footer = document.querySelector("footer");
 
-const catalog = Catalog(
-  [
-    "Chemical Materials",
-    "Electrical Materials",
-    "Heavy Equipments",
-    "Aggregates",
-    "Electrical Products by JCMS",
-    "Wellness Products by JCMS",
-  ],
-  catalogData,
-);
+  contentWrapper.appendChild(carousel);
+  contentWrapper.appendChild(carouselSwipe);
+  contentWrapper.appendChild(rentalCarousel);
+  contentWrapper.appendChild(rentalSwipe);
+  contentWrapper.appendChild(catalog);
+  navWrapper.appendChild(Navbar());
+  Footer(footer);
+}
 
-body.appendChild(carousel);
-body.appendChild(carouselSwipe);
-body.appendChild(rentalCarousel);
-body.appendChild(rentalSwipe);
-body.appendChild(catalog);
-realEstateInit();
+init();

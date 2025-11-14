@@ -3,56 +3,6 @@
   color: white;
 }
 
-@import "./about.css";
-
-.hero-section-nav {
-  display: flex;
-  align-items: center;
-  padding: 2rem;
-}
-
-.hero-section-nav .logo-container {
-  width: 45px;
-  height: auto;
-  overflow: hidden;
-}
-
-.hero-section-nav .center-bar {
-  max-width: 900px;
-  border-radius: 2rem;
-  padding: 1rem 5rem;
-  background-color: #292622;
-  display: flex;
-  gap: 2rem;
-  font-size: 0.9rem;
-  font-weight: 1500;
-  margin: 0 auto;
-  text-transform: uppercase;
-}
-
-#center-bar-contact {
-  display: none;
-}
-.hero-section-nav .center-bar a:hover {
-  color: #f3cc8e;
-  cursor: pointer;
-}
-
-.hero-section-nav .nav-contact-button,
-.nav-contact-button {
-  font-size: 1.2rem;
-  border-radius: 0.5rem;
-  padding: 0.5rem 2rem;
-  background-color: #181818;
-  border: 1px solid #f3cc8e;
-}
-
-.nav-contact-button:hover {
-  color: black;
-  background-color: #f3cc8e;
-  cursor: pointer;
-}
-
 /* Banner */
 main {
   margin-bottom: 10rem;
@@ -94,7 +44,7 @@ img {
   margin-bottom: 10rem;
   border-top: 1px solid #f3cc8e;
   border-bottom: 1px solid #f3cc8e;
-  padding: 2rem;
+  padding: 2rem 0 2rem 0;
 }
 
 .carousel-btn {
@@ -185,6 +135,7 @@ img {
 .catalog {
   padding-bottom: 5rem;
 }
+
 label,
 select {
   font-size: 1.5rem;
@@ -208,7 +159,7 @@ option:hover {
   cursor: pointer;
 }
 
-.content-wrapper {
+.products-wrapper {
   height: 80vh;
   overflow-y: scroll;
   padding: 0rem 5rem;

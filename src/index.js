@@ -1,21 +1,40 @@
+import "./master.css";
 import "./index.css";
-const mainBg = document.querySelector("main");
 
-window.addEventListener("scroll", () => {
-  let offset = window.pageYOffset;
-  const velocity = 0.5;
+import { Navbar, Footer } from "./Components.js";
 
-  mainBg.style.backgroundPositionX = offset * velocity + "px";
-});
+function init() {
+  const mainBg = document.querySelector("main");
+  const navWrapper = document.querySelector(".nav-wrapper");
+  const footer = document.querySelector("footer");
 
-const marketingItemNodes = [...document.querySelectorAll(".feature")];
+  window.addEventListener("scroll", () => {
+    let offset = window.pageYOffset;
+    const velocity = 0.5;
+
+    mainBg.style.backgroundPositionX = offset * velocity + "px";
+  });
+
+  const marketingItemNodes = [...document.querySelectorAll(".feature")];
+
+  marketingItemNodes.forEach((item) => {
+    item.addEventListener("mouseenter", handleHover);
+    item.addEventListener("mouseleave", handleDefault);
+  });
+
+  navWrapper.appendChild(Navbar());
+  Footer(footer);
+
+}
 
 function handleHover() {
   const title = [...this.children[0].children];
+
   const desc = this.children[1];
   title.forEach((titleFragment) =>
     titleFragment.classList.toggle("feature-hovered"),
   );
+
   desc.classList.toggle("feature-hovered");
 }
 
@@ -28,8 +47,4 @@ function handleDefault() {
   desc.classList.toggle("feature-hovered");
 }
 
-
-marketingItemNodes.forEach((item) => {
-  item.addEventListener("mouseenter", handleHover);
-  item.addEventListener("mouseleave", handleDefault);
-});
+init();
