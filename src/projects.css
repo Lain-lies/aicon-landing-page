@@ -35,9 +35,11 @@ main {
   margin-top: 2rem;
   justify-items: center;
   align-items: center;
+  padding: 2rem;
+
 }
 
-.image-container {
+.polaroid-image-container {
   width: 75%;
   height: auto;
   overflow: hidden;
@@ -46,13 +48,9 @@ main {
   align-items: center;
 }
 
-.image-container img {
+.polaroid-image-container img {
   border: 12px solid white;
   border-bottom: 65px solid white;
-}
-
-.polaroid {
-  padding: 2rem;
 }
 
 .polaroid p {
@@ -126,7 +124,15 @@ main {
   height: auto !important;
 }
 
-.hidden {
+.frame-hidden {
+  display: none;
+}
+
+.panel-hidden{
+  display: none;
+}
+
+.hidden{
   display: none;
 }
 

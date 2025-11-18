@@ -33,12 +33,12 @@ function localProjectInit() {
   let activePanels = 0;
 
   panelDOM.forEach((panel) => panelContainer.appendChild(panel));
-  panelDOM[activePanels].classList.remove("hidden");
+  panelDOM[activePanels].classList.remove("panel-hidden");
 
   const showButton = document.querySelector(".local-projects .show-button");
   showButton.addEventListener("click", () => {
     const panel = panelDOM[++activePanels];
-    panel.classList.remove("hidden");
+    panel.classList.remove("panel-hidden");
     const nextPanel = activePanels + 1;
     if (panelDOM[nextPanel] === undefined) {
       showButton.classList.toggle("hidden");

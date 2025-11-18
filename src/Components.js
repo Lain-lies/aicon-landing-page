@@ -24,7 +24,7 @@ function Polaroid(data, order) {
     container.appendChild(imageContainer);
   }
 
-  imageContainer.classList.add("image-container");
+  imageContainer.classList.add("polaroid-image-container");
   container.classList.add("polaroid");
   return container;
 }
@@ -45,7 +45,7 @@ function Frame(data, maxPolaroid, maxFrames) {
   for (let i = 0; i < maxFrames; i++) {
     const node = document.createElement("div");
     node.classList.add("frame");
-    node.classList.add("hidden");
+    node.classList.add("frame-hidden");
     frames.push(node);
   }
 
@@ -60,13 +60,13 @@ function Frame(data, maxPolaroid, maxFrames) {
     framesWrapper.appendChild(frame);
   });
 
-  frames[state.activeFrames].classList.remove("hidden");
+  frames[state.activeFrames].classList.remove("frame-hidden");
 
   showButton.addEventListener("click", () => {
-    frames[++state.activeFrames].classList.remove("hidden");
+    frames[++state.activeFrames].classList.remove("frame-hidden");
     const nextFrame = state.activeFrames + 1;
     if (frames[nextFrame] === undefined) {
-      showButton.classList.toggle("hidden");
+      showButton.classList.toggle("frame-hidden");
     }
   });
 
@@ -98,7 +98,7 @@ function Panel(data) {
 
   const project = Project(data.projects);
   panel.classList.add("panel");
-  panel.classList.add("hidden");
+  panel.classList.add("panel-hidden");
   panel.appendChild(partner);
   panel.appendChild(project);
 
