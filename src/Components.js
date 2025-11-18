@@ -131,7 +131,7 @@ function slide(state, images, button, indices, toRight, isMobile) {
   previousImage.addEventListener(
     "transitionend",
     () => {
-      previousImage.classList.toggle("show");
+      previousImage.classList.toggle("carousel-show");
       previousImage.classList.toggle(_class);
 
       indices[state.current].classList.toggle("index-selected");
@@ -141,7 +141,7 @@ function slide(state, images, button, indices, toRight, isMobile) {
       indices[state.current].classList.toggle("index-selected");
 
       const nextImage = images[state.current];
-      nextImage.classList.toggle("show");
+      nextImage.classList.toggle("carousel-show");
 
       if (isMobile) {
         state.touchStart = false;
@@ -152,8 +152,6 @@ function slide(state, images, button, indices, toRight, isMobile) {
       }
 
       if (button !== null) button.disabled = false;
-
-      console.log(state);
     },
     { once: true },
   );
@@ -167,23 +165,23 @@ function Carousel(assets, description) {
   };
 
   const carousel = document.createElement("div");
-  const banner = Banner(description);
+  const carouselBanner = Banner(description);
   const indicator = Indicator(state.max);
-  const wrapper = document.createElement("div");
+  const contentWrapper = document.createElement("div");
 
-  wrapper.classList.add("wrapper");
   carousel.classList.add("carousel");
+  contentWrapper.classList.add("carousel-content-wrapper");
 
   const images = assets.map((asset) => {
     const imageContainer = document.createElement("div");
     const img = document.createElement("img");
     img.src = asset;
     imageContainer.appendChild(img);
-    imageContainer.classList.add("image-container");
+    imageContainer.classList.add("carousel-image-container");
     return imageContainer;
   });
 
-  images[state.current].classList.toggle("show");
+  images[state.current].classList.toggle("carousel-show");
 
   const button = {
     left: document.createElement("button"),
@@ -203,18 +201,18 @@ function Carousel(assets, description) {
     slide(state, images, e.target, indicator.indices, true, false),
   );
 
-  wrapper.appendChild(button.left);
-  images.forEach((image) => wrapper.appendChild(image));
-  wrapper.appendChild(button.right);
+  contentWrapper.appendChild(button.left);
+  images.forEach((image) => contentWrapper.appendChild(image));
+  contentWrapper.appendChild(button.right);
 
-  carousel.appendChild(banner);
-  carousel.appendChild(wrapper);
+  carousel.appendChild(carouselBanner);
+  carousel.appendChild(contentWrapper);
   carousel.appendChild(indicator.wrapper);
 
   return carousel;
 }
 
-function CarouselSwipe(assets) {
+function CarouselSwipe(assets, description) {
   const state = {
     max: assets.length - 1,
     min: 0,
@@ -228,41 +226,49 @@ function CarouselSwipe(assets) {
   };
 
   const carousel = document.createElement("div");
-  const wrapper = document.createElement("div");
+  const carouselBanner = Banner(description);
+  const carouselContentWrapper = document.createElement("div");
   const indicator = Indicator(state.max);
 
   carousel.classList.add("carousel-mobile");
+  carouselContentWrapper.classList.add("carousel-content-wrapper");
   const images = assets.map((asset) => {
     const imageContainer = document.createElement("div");
     const img = document.createElement("img");
     img.src = asset;
     imageContainer.appendChild(img);
-    imageContainer.classList.add("image-container");
+    imageContainer.classList.add("carousel-image-container");
     return imageContainer;
   });
 
-  images[state.current].classList.toggle("show");
+  images[state.current].classList.toggle("carousel-show");
 
-  wrapper.addEventListener("touchstart", (e) => {
+  carouselContentWrapper.addEventListener("touchstart", (e) => {
     state.startingX = e.touches[0].clientX - e.target.offsetLeft;
     state.touchStart = true;
     console.log(state.startingX);
   });
 
-  wrapper.addEventListener("touchmove", (e) => {
+  carouselContentWrapper.addEventListener("touchmove", (e) => {
     if (!state.touchStart || state.leftThreshold || state.rightThreshold)
       return;
 
     const current = e.touches[0].clientX - e.target.offsetLeft;
 
     if (current > state.startingX) {
-      state.thresholdValue = getRightThreshold(state.startingX, wrapper);
+      state.thresholdValue = getRightThreshold(
+        state.startingX,
+        carouselContentWrapper,
+      );
       state.rightThreshold = true;
       return;
     }
 
     if (current < state.startingX) {
-      state.thresholdValue = getLeftThreshold(state.startingX, wrapper);
+      state.thresholdValue = getLeftThreshold(
+        state.startingX,
+        carouselContentWrapper,
+      );
       console.log(`left threshold value ${state.thresholdValue}`);
       state.leftThreshold = true;
       return;
@@ -271,7 +277,7 @@ function CarouselSwipe(assets) {
     return;
   });
 
-  wrapper.addEventListener("touchmove", (e) => {
+  carouselContentWrapper.addEventListener("touchmove", (e) => {
     const current = e.touches[0].clientX - e.target.offsetLeft;
 
     if (
@@ -299,9 +305,12 @@ function CarouselSwipe(assets) {
     return;
   });
 
-  images.forEach((image) => wrapper.appendChild(image));
-  carousel.appendChild(wrapper);
+  images.forEach((image) => carouselContentWrapper.appendChild(image));
+
+  carousel.appendChild(carouselBanner);
+  carousel.appendChild(carouselContentWrapper);
   carousel.appendChild(indicator.wrapper);
+
   return carousel;
 }
 
@@ -351,10 +360,12 @@ function Banner(description) {
 function Catalog(options, listArray) {
   const state = { selectedIndex: 0 };
   const catalog = document.createElement("div");
-  const banner = Banner("Product Catalog");
-  const label = document.createElement("label");
-  const selector = document.createElement("select");
-  const productsWrapper = document.createElement("div");
+  const catalogLabelSelectorWrapper = document.createElement("div");
+
+  const catalogBanner = Banner("Product Catalog");
+  const catalogLabel = document.createElement("label");
+  const catalogSelector = document.createElement("select");
+  const catalogContentWrapper = document.createElement("div");
   const content = listArray.map((list) => {
     const ul = document.createElement("ul");
     list.forEach((item) => {
@@ -366,35 +377,42 @@ function Catalog(options, listArray) {
 
     return ul;
   });
+
   const updateContent = (value) => {
-    productsWrapper.removeChild(content[state.selectedIndex]);
+    catalogContentWrapper.removeChild(content[state.selectedIndex]);
     state.selectedIndex = value;
-    productsWrapper.appendChild(content[state.selectedIndex]);
+    catalogContentWrapper.appendChild(content[state.selectedIndex]);
   };
 
   catalog.classList.add("catalog");
-  productsWrapper.classList.add("products-wrapper");
+  catalogLabelSelectorWrapper.classList.add("catalog-label-selector-wrapper");
+  catalogLabel.classList.add("catalog-label");
+  catalogSelector.classList.add("catalog-selector");
+  catalogContentWrapper.classList.add("catalog-content-wrapper");
 
-  label.for = "product-type";
-  label.textContent = "Product Type: ";
-  selector.id = "product-type";
+  catalogLabel.for = "catalog-selector";
+  catalogLabel.textContent = "Product Type: ";
+  catalogSelector.id = "catalog-selector";
 
   options.forEach((option, index) => {
     const node = document.createElement("option");
+    node.classList.add("catalog-option");
     node.value = index;
     node.textContent = option;
-    selector.appendChild(node);
+
+    catalogSelector.appendChild(node);
   });
 
-  selector.addEventListener("change", (e) => {
+  catalogSelector.addEventListener("change", (e) => {
     updateContent(e.target.value);
   });
 
-  productsWrapper.appendChild(content[state.selectedIndex]);
-  catalog.appendChild(banner);
-  catalog.appendChild(label);
-  catalog.appendChild(selector);
-  catalog.appendChild(productsWrapper);
+  catalogLabelSelectorWrapper.appendChild(catalogLabel);
+  catalogLabelSelectorWrapper.appendChild(catalogSelector);
+  catalogContentWrapper.appendChild(content[state.selectedIndex]);
+  catalog.appendChild(catalogBanner);
+  catalog.appendChild(catalogLabelSelectorWrapper);
+  catalog.appendChild(catalogContentWrapper);
 
   return catalog;
 }
@@ -404,10 +422,10 @@ function List(product) {
   const name = document.createElement("p");
   const ul = document.createElement("ul");
 
-  name.classList.add("product-name");
-  name.classList.add("product-inactive");
-  ul.classList.add("inactive");
-  ul.classList.add("inner-list");
+  name.classList.add("list-name");
+  name.classList.add("list-name-active");
+  ul.classList.add("list");
+  ul.classList.add("list-inactive");
 
   wrapper.appendChild(name);
 
@@ -426,9 +444,9 @@ function List(product) {
   });
 
   name.addEventListener("click", () => {
-    ul.classList.toggle("inactive");
-    name.classList.toggle("product-active");
-    name.classList.toggle("product-inactive");
+    ul.classList.toggle("list-inactive");
+    name.classList.toggle("list-name-active");
+    name.classList.toggle("list-name-inactive");
   });
 
   wrapper.appendChild(ul);
@@ -476,6 +494,11 @@ function Navbar() {
   const button = document.createElement("button");
   button.textContent = "CONTACTS";
   button.classList.add("nav-contact-button");
+  button.addEventListener("click", () => {
+    document.getElementById("footer").scrollIntoView({
+      behavior: "smooth",
+    });
+  });
 
   nav.appendChild(logoContainer);
   nav.appendChild(centerBar);
@@ -487,7 +510,7 @@ function Navbar() {
 function Footer(wrapper) {
   wrapper.innerHTML = `
 
-  <div class="footer-content">
+  <div id="footer" class="footer-content">
 
     <div class="footer-title-quote">
       <p class="title">AICON</p>
@@ -535,7 +558,7 @@ function Footer(wrapper) {
 
     <div class="footer-contacts">
       <p class="label">CONTACTS</p>
-      <div class="numbers">
+      <div class="footer-numbers">
         <p>+639087009307</p>
         <p>+639936890205</p>
       </div>
@@ -548,6 +571,5 @@ function Footer(wrapper) {
 
   `;
 }
-
 
 export { Frame, Panel, Carousel, CarouselSwipe, Catalog, Navbar, Footer };

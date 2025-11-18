@@ -125,7 +125,28 @@ h6 {
   cursor: pointer;
 }
 
-footer{
+.main-banner {
+  background: #f3cc8e;
+  width: 50vw;
+  padding-left: 25%;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.main-banner h1 {
+  font-size: clamp(1rem, 1.4rem + 3vw, 5rem);
+  color: black;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+}
+
+.banner .text {
+  font-size: 4rem;
+  text-align: center;
+  color: #f3cc8e;
+}
+
+footer {
   background: #212121;
 }
 
@@ -169,13 +190,13 @@ footer{
   height: auto;
 }
 
-.numbers {
+.footer-numbers {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.numbers > p {
+.footer-numbers > p {
   font-size: 1.1rem;
 }
 
@@ -217,6 +238,14 @@ footer{
     display: none;
   }
 
+  .banner{
+    margin-bottom: 2rem;
+  }
+
+  .banner .text {
+    font-size: 2.5rem;
+  }
+  
   .footer-content {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -248,7 +277,7 @@ footer{
     width: 1.2rem;
   }
 
-  .numbers > p {
+  .footer-numbers > p {
     font-size: 0.8rem;
   }
 
