@@ -6,6 +6,7 @@ import { Navbar, Footer, antiFOUC } from "./Components.js";
 function init() {
   const mainBg = document.querySelector("main");
   const navWrapper = document.querySelector(".nav-wrapper");
+  const mobileContactButton = document.querySelector(".mobile-contact-btn")
   const footer = document.querySelector("footer");
 
   window.addEventListener("scroll", () => {
@@ -28,6 +29,9 @@ function init() {
     "click",
     () => (location.href = "services.html"),
   );
+
+  mobileContactButton.addEventListener("click", () => document.getElementById("footer").scrollIntoView({behavior: "smooth"}));
+  
   navWrapper.appendChild(Navbar("home"));
   Footer(footer);
 }
