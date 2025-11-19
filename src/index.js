@@ -22,9 +22,14 @@ function init() {
     item.addEventListener("mouseleave", handleDefault);
   });
 
+  const servicesShortcutButton = document.querySelector(".slogan-services-btn");
+
+  servicesShortcutButton.addEventListener(
+    "click",
+    () => (location.href = "services.html"),
+  );
   navWrapper.appendChild(Navbar());
   Footer(footer);
-
 }
 
 function handleHover() {

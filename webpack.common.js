@@ -2,17 +2,42 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/projects.js",
+  entry: {
+    index: "./src/index.js",
+    about: "./src/about.js",
+    projects: "./src/projects.js",
+    services: "./src/services.js",
+  },
 
   output: {
-    filename: "main.js",
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
 
   plugins: [
     new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: "./src/index.html",
+      chunks: ["index"],
+    }),
+
+    new HtmlWebpackPlugin({
+      filename: "about.html",
+      template: "./src/about.html",
+      chunks: ["about"],
+    }),
+
+    new HtmlWebpackPlugin({
+      filename: "projects.html",
       template: "./src/projects.html",
+      chunks: ["projects"],
+    }),
+
+    new HtmlWebpackPlugin({
+      filename: "services.html",
+      template: "./src/services.html",
+      chunks: ["services"],
     }),
   ],
 
@@ -42,5 +67,11 @@ module.exports = {
         type: "asset/resource",
       },
     ],
+  },
+
+  devServer: {
+    host: "0.0.0.0",
+    port: 8080,
+    allowedHosts: "all",
   },
 };

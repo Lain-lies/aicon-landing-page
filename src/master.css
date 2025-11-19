@@ -140,12 +140,6 @@ h6 {
   white-space: nowrap;
 }
 
-.banner .text {
-  font-size: 4rem;
-  text-align: center;
-  color: #f3cc8e;
-}
-
 footer {
   background: #212121;
 }
@@ -206,6 +200,220 @@ footer {
   font-size: 1.1rem;
 }
 
+.banner .text {
+  font-size: 4rem;
+  text-align: center;
+  color: #f3cc8e;
+}
+
+.polaroid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 2rem;
+  justify-items: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.polaroid p {
+  font-size: 2rem;
+  opacity: 0.9;
+  text-align: center;
+}
+
+.polaroid-image-container {
+  width: 75%;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.polaroid-image-container img {
+  border: 12px solid white;
+  border-bottom: 65px solid white;
+}
+
+.show-button {
+  display: block;
+  margin: 0 auto;
+  width: 70%;
+  padding: 1rem 1rem;
+  font-size: 3rem;
+  color: hsl(0, 0%, 100%);
+  font-family: sans-serif;
+  opacity: 0.5;
+  background-color: #181818;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border: 3px solid rgb(255, 255, 255, 0.3);
+  border-top: none;
+}
+
+.show-button:hover {
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+}
+
+.carousel-mobile {
+  display: none;
+}
+
+.carousel {
+  margin-bottom: 10rem;
+  border-top: 1px solid #f3cc8e;
+  border-bottom: 1px solid #f3cc8e;
+  padding: 2rem 0 2rem 0;
+}
+
+.carousel-content-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-btn {
+  z-index: 1;
+  font-size: 5rem;
+  color: #f3cc8e;
+  background-color: inherit;
+  text-align: center;
+  border: none;
+  padding: 1rem;
+  opacity: 0.5;
+}
+
+.carousel-btn:hover {
+  cursor: pointer;
+  background-color: white;
+  opacity: 0.5;
+  color: #f3cc8e;
+}
+
+.carousel-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-image-container {
+  display: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.carousel-image-container img {
+  pointer-events: none;
+}
+
+.carousel-show {
+  display: block;
+}
+
+/* carousel move right */
+
+.slide-right {
+  transform: translateX(100%);
+  transition: transform 500ms ease;
+}
+
+/* carousel move left */
+
+.slide-left {
+  transform: translateX(-100%);
+  transition: transform 500ms ease;
+}
+
+/* Indicator */
+
+.indicator {
+  display: flex;
+  justify-content: center;
+  line-height: 0;
+  gap: 0.5rem;
+}
+
+.index {
+  width: 10px;
+  height: 10px;
+  border-radius: 1rem;
+  background-color: rgb(255, 255, 255, 0.3);
+}
+
+.index-selected {
+  background-color: rgb(255, 255, 255, 1);
+}
+
+/* Catalog */
+
+.catalog {
+  padding-bottom: 5rem;
+}
+
+.catalog-content-wrapper {
+  height: 80vh;
+  overflow-y: scroll;
+  padding: 2rem 5rem;
+}
+
+.catalog-label,
+.catalog-selector {
+  font-size: 1.5rem;
+  margin: 3rem 0rem 1rem 0rem;
+}
+
+.catalog-label {
+  margin-left: 5rem;
+}
+
+.catalog-selector,
+.catalog-option {
+  color: black;
+}
+
+.catalog-selector {
+  padding: 0.5rem;
+}
+
+.catalog-option:hover {
+  cursor: pointer;
+}
+
+/* List */
+
+.list-name {
+  padding: 1rem;
+  background: #f3cc8e;
+  border: 1px solid;
+  color: #000;
+  font-size: 1.2rem;
+}
+
+.list-name:hover {
+  cursor: pointer;
+}
+
+.list {
+  font-size: 1.2rem;
+  padding: 1rem;
+  padding-left: 2rem;
+}
+
+.list-inactive {
+  display: none;
+}
+
+.list-name-inactive::before {
+  content: "► ";
+  color: #000;
+}
+
+.list-name-active::before {
+  content: "▼ ";
+  color: #000;
+}
+
 @media (max-width: 1200px) {
   .footer-logo-container {
     width: 1.4rem;
@@ -238,14 +446,6 @@ footer {
     display: none;
   }
 
-  .banner{
-    margin-bottom: 2rem;
-  }
-
-  .banner .text {
-    font-size: 2.5rem;
-  }
-  
   .footer-content {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -282,6 +482,63 @@ footer {
   }
 
   .copyright {
+    font-size: 0.7rem;
+  }
+
+  .banner {
+    margin-bottom: 2rem;
+  }
+
+  .banner .text {
+    font-size: 2.5rem;
+  }
+
+  .polaroid p {
+    font-size: 1rem;
+  }
+
+  .polaroid-image-container {
+    width: 85%;
+  }
+
+  .polaroid-image-container img {
+    border: 7px solid white;
+    border-bottom: 30px solid white;
+  }
+
+  .carousel {
+    display: none;
+  }
+
+  .carousel-mobile {
+    display: block;
+  }
+
+  .catalog-label-selector-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .catalog-content-wrapper {
+    padding: 1rem 1.5rem;
+  }
+
+  .catalog-label,
+  .catalog-selector {
+    font-size: 1rem;
+    margin: 3rem 0rem 1rem 0rem;
+  }
+
+  .list-name {
+    padding: 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  .list {
+    padding: 0.5rem;
+    padding-left: 1.5rem;
     font-size: 0.7rem;
   }
 }

@@ -454,7 +454,7 @@ function List(product) {
   return wrapper;
 }
 
-function Navbar() {
+function Navbar(pageName) {
   const nav = document.createElement("nav");
   nav.classList.add("nav");
 
@@ -472,11 +472,11 @@ function Navbar() {
   const numberOfLinks = 4;
 
   const linksData = [
-    { text: "Home", link: "#" },
-    { text: "About", link: "#" },
-    { text: "Projects", link: "#" },
-    { text: "Services", link: "#" },
-    { text: "Contacts", link: "#" },
+    { text: "Home", link: "#", href: "index.html" },
+    { text: "About", link: "#", href: "about.html" },
+    { text: "Projects", link: "#", href: "projects.html" },
+    { text: "Services", link: "#", href: "services.html" },
+    { text: "Contacts", link: "#", href: "contacts.html" },
   ];
 
   for (let i = 0; i <= numberOfLinks; i++) {
@@ -487,7 +487,7 @@ function Navbar() {
       node.classList.add("nav-center-bar-contact");
     }
     node.textContent = linkData.text;
-    node.href = linkData.link;
+    node.href = linkData.href;
     centerBar.appendChild(node);
   }
 
