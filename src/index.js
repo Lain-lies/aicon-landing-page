@@ -1,7 +1,7 @@
 import "./master.css";
 import "./index.css";
 
-import { Navbar, Footer } from "./Components.js";
+import { Navbar, Footer, antiFOUC } from "./Components.js";
 
 function init() {
   const mainBg = document.querySelector("main");
@@ -28,7 +28,7 @@ function init() {
     "click",
     () => (location.href = "services.html"),
   );
-  navWrapper.appendChild(Navbar());
+  navWrapper.appendChild(Navbar("home"));
   Footer(footer);
 }
 
@@ -52,4 +52,6 @@ function handleDefault() {
   desc.classList.toggle("feature-hovered");
 }
 
+
 init();
+antiFOUC();

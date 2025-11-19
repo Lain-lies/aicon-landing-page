@@ -72,6 +72,8 @@ h6 {
   isolation: isolate;
 }
 
+/* Navbar */
+
 .nav {
   display: flex;
   align-items: center;
@@ -101,11 +103,11 @@ h6 {
   display: none;
 }
 
-.nav-center-bar a {
+.nav-center-bar-link{
   color: #fff;
 }
 
-.nav-center-bar a:hover {
+.nav-center-bar-link:hover {
   color: #f3cc8e;
 }
 
@@ -125,6 +127,11 @@ h6 {
   cursor: pointer;
 }
 
+.nav-current-page-highlight{
+  color: #f3cc8e;
+}
+
+/* Main Banner */
 .main-banner {
   background: #f3cc8e;
   width: 50vw;
@@ -139,6 +146,8 @@ h6 {
   border-radius: 0.5rem;
   white-space: nowrap;
 }
+
+/* Footer */
 
 footer {
   background: #212121;
@@ -206,6 +215,16 @@ footer {
   color: #f3cc8e;
 }
 
+/* Frame */
+
+.frame{
+  margin-bottom: 1rem;
+}
+.frame-hidden {
+  display: none;
+}
+
+/* Polaroid */
 .polaroid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -257,8 +276,13 @@ footer {
   cursor: pointer;
 }
 
+.hidden {
+  display: none;
+}
+
 .carousel-mobile {
   display: none;
+  margin-bottom: 4rem;
 }
 
 .carousel {
@@ -332,6 +356,7 @@ footer {
   justify-content: center;
   line-height: 0;
   gap: 0.5rem;
+  padding: 10px;
 }
 
 .index {
@@ -381,7 +406,7 @@ footer {
 }
 
 /* List */
-
+  
 .list-name {
   padding: 1rem;
   background: #f3cc8e;
@@ -427,12 +452,12 @@ footer {
     display: block;
   }
 
-  .nav .nav-logo-container,
+  .nav-logo-container,
   .nav-contact-button {
     display: none;
   }
 
-  .nav .nav-center-bar {
+  .nav-center-bar {
     padding: 1rem;
     gap: 1.5rem;
     justify-content: center;
@@ -485,12 +510,8 @@ footer {
     font-size: 0.7rem;
   }
 
-  .banner {
-    margin-bottom: 2rem;
-  }
-
   .banner .text {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .polaroid p {
@@ -541,10 +562,21 @@ footer {
     padding-left: 1.5rem;
     font-size: 0.7rem;
   }
+
+  .main-banner {
+    width: 75vw;
+    margin: 2rem 0rem;
+  }
+
+  .show-button {
+    width: 80%;
+    font-size: 1.5rem;
+  }
+
 }
 
 @media (max-width: 500px) {
-  .nav .nav-center-bar {
+  .nav-center-bar {
     font-size: 0.8rem;
     gap: 1rem;
   }

@@ -8,6 +8,7 @@ import {
   Catalog,
   Navbar,
   Footer,
+  antiFOUC
 } from "./Components.js";
 
 import {
@@ -20,12 +21,31 @@ import {
   productTypes,
 } from "./data.js";
 
+function realEstateInit() {
+  const maxPolaroid = 4;
+  const maxFrames = 4;
+  const data = [];
+  let start = 0;
+  let end = 4;
+
+  // divide projects to 4
+  while (true) {
+    const sliced = realEstateData.slice(start, end);
+    if (sliced.length === 0) break;
+    data.push(sliced);
+    start = end;
+    end += maxPolaroid;
+  }
+
+  return Frame(data, maxFrames, "Real Estate / Rentals");
+}
+
 function init() {
   const navWrapper = document.querySelector(".nav-wrapper");
   const contentWrapper = document.querySelector(".content-wrapper");
 
   const productCarousel = Carousel(products, "Products");
-  console.log(productCarousel);
+
   const rentalCarousel = Carousel(rentals, "Rentals");
   const productCatalog = Catalog(productTypes, catalogData);
 
@@ -33,14 +53,16 @@ function init() {
 
   const rentalCarouselMobile = CarouselSwipe(rentalsM, "Rentals");
 
+  const realEstateFrame = realEstateInit();
   const footer = document.querySelector("footer");
 
-  navWrapper.appendChild(Navbar());
+  navWrapper.appendChild(Navbar("services"));
   contentWrapper.appendChild(productCarousel);
   contentWrapper.appendChild(rentalCarousel);
   contentWrapper.appendChild(productCarouselMobile);
   contentWrapper.appendChild(rentalCarouselMobile);
   contentWrapper.appendChild(productCatalog);
+  contentWrapper.appendChild(realEstateFrame);
 
   Footer(footer);
 
@@ -48,3 +70,4 @@ function init() {
 }
 
 init();
+antiFOUC();

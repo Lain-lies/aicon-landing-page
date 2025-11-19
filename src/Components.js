@@ -29,15 +29,17 @@ function Polaroid(data, order) {
   return container;
 }
 
-function Frame(data, maxPolaroid, maxFrames) {
+function Frame(data, maxFrames, bannerName) {
   const state = {
     activeFrames: 0,
   };
   const mainWrapper = document.createElement("div");
+  const frameBanner = Banner(bannerName);
   const framesWrapper = document.createElement("div");
   const showButton = document.createElement("button");
   const frames = [];
   const polaroids = [];
+  mainWrapper.classList.add("frame");
 
   showButton.textContent = "V";
   showButton.classList.add("show-button");
@@ -47,7 +49,7 @@ function Frame(data, maxPolaroid, maxFrames) {
     node.classList.add("frame");
     node.classList.add("frame-hidden");
     frames.push(node);
-  }
+  } 
 
   data.forEach((list) => {
     const temp = [];
@@ -62,14 +64,21 @@ function Frame(data, maxPolaroid, maxFrames) {
 
   frames[state.activeFrames].classList.remove("frame-hidden");
 
-  showButton.addEventListener("click", () => {
-    frames[++state.activeFrames].classList.remove("frame-hidden");
-    const nextFrame = state.activeFrames + 1;
-    if (frames[nextFrame] === undefined) {
-      showButton.classList.toggle("frame-hidden");
+  showButton.addEventListener("click", (e) => {
+
+    /* maxFrames - 2 will hide the showButton before the last frame is shown because if
+    we reach the last frame the showButton is still rendered even though there is no content
+    to show after that. */
+
+    if(state.activeFrames === (maxFrames - 2)){
+      showButton.classList.add("hidden");
     }
+
+    frames[++state.activeFrames].classList.remove("frame-hidden");
+ 
   });
 
+  mainWrapper.append(frameBanner);
   mainWrapper.appendChild(framesWrapper);
   mainWrapper.appendChild(showButton);
   return mainWrapper;
@@ -482,12 +491,19 @@ function Navbar(pageName) {
   for (let i = 0; i <= numberOfLinks; i++) {
     const linkData = linksData[i];
     const node = document.createElement("a");
-
+  
     if (i === numberOfLinks) {
       node.classList.add("nav-center-bar-contact");
+      node.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.getElementById("footer").scrollIntoView({behavior: "smooth"});
+      })
     }
+
     node.textContent = linkData.text;
     node.href = linkData.href;
+    node.classList.add("nav-center-bar-link");
+    if(linkData.text.toLowerCase() === pageName.toLowerCase()) node.classList.add("nav-current-page-highlight");
     centerBar.appendChild(node);
   }
 
@@ -572,4 +588,10 @@ function Footer(wrapper) {
   `;
 }
 
-export { Frame, Panel, Carousel, CarouselSwipe, Catalog, Navbar, Footer };
+function antiFOUC(){
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.style.visibility = 'visible';
+  });
+}
+
+export { Frame, Panel, Carousel, CarouselSwipe, Catalog, Navbar, Footer, antiFOUC };

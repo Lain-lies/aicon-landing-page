@@ -1,7 +1,7 @@
 import "./projects.css";
 import "./master.css";
 
-import { Frame, Panel, Navbar, Footer } from "./Components.js";
+import { Frame, Panel, Navbar, Footer, antiFOUC} from "./Components.js";
 import { intData, localData } from "./data";
 
 function intProjectInit() {
@@ -21,7 +21,7 @@ function intProjectInit() {
     end += maxPolaroid;
   }
 
-  section.appendChild(Frame(data, maxPolaroid, maxFrames));
+  section.appendChild(Frame(data, maxFrames, "International Projects"));
 }
 
 function localProjectInit() {
@@ -46,13 +46,15 @@ function localProjectInit() {
   });
 }
 
-function appInit() {
+function init() {
   const navWrapper = document.querySelector(".nav-wrapper");
   const footer = document.querySelector("footer");
-  navWrapper.appendChild(Navbar());
+  navWrapper.appendChild(Navbar("projects"));
   Footer(footer);
   intProjectInit();
   localProjectInit();
 }
 
-appInit();
+
+init();
+antiFOUC();

@@ -1,7 +1,7 @@
 import "./about.css";
 import "./master.css";
 
-import { Navbar, Footer } from "./Components.js";
+import { Navbar, Footer, antiFOUC} from "./Components.js";
 
 function init() {
   const ceo = document.querySelector(".officers-ceo");
@@ -24,7 +24,7 @@ function init() {
 
   const navWrapper = document.querySelector(".nav-wrapper");
 
-  navWrapper.appendChild(Navbar());
+  navWrapper.appendChild(Navbar("about"));
   ceoObserver.observe(ceo);
   cfoObserver.observe(cfo);
   Footer(footer);
@@ -32,3 +32,4 @@ function init() {
 
 
 init();
+antiFOUC();

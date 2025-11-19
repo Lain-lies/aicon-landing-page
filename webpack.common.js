@@ -20,24 +20,48 @@ module.exports = {
       filename: "index.html",
       template: "./src/index.html",
       chunks: ["index"],
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+      },
     }),
 
     new HtmlWebpackPlugin({
       filename: "about.html",
       template: "./src/about.html",
       chunks: ["about"],
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+      },
     }),
 
     new HtmlWebpackPlugin({
       filename: "projects.html",
       template: "./src/projects.html",
       chunks: ["projects"],
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+      },
     }),
 
     new HtmlWebpackPlugin({
       filename: "services.html",
       template: "./src/services.html",
       chunks: ["services"],
+        minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+      },
     }),
   ],
 

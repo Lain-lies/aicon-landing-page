@@ -73,15 +73,8 @@ main {
   height: auto !important;
 }
 
-.frame-hidden {
-  display: none;
-}
 
 .panel-hidden {
-  display: none;
-}
-
-.hidden {
   display: none;
 }
 
@@ -135,6 +128,7 @@ main {
     width: 80%;
     font-size: 1.5rem;
   }
+  
   .local-projects {
     padding: 1.5rem;
   }

@@ -319,6 +319,7 @@
   }
 
   .hero-section-content .mobile-contact-btn {
+    background-color: #f3cc8e;
     color: #000;
     font-size: 0.9rem;
     margin-top: 1.5rem;
@@ -328,7 +329,7 @@
   .content-section {
     background: none;
   }
-
+  
   .content-section-slogan {
     padding: 2rem;
   }
